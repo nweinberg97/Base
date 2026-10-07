@@ -95,6 +95,10 @@ Every external datum has a source and one of four states, shown as a badge where
 
 `npm run data:validate` and the test suite fail if provenance goes missing. There are no fake reviews, ratings, testimonials or savings claims, and the reserve button is labelled *Reserve pickup — prototype*.
 
+## Food photos
+
+Ingredients and add-ons are shown with real photos from [Wikimedia Commons](https://commons.wikimedia.org/), under free licences only (public domain, CC0, CC BY, CC BY-SA), each credited to its author with its licence. They were chosen by hand for accuracy from candidates fetched by a GitHub Actions workflow; AI-generated images are excluded. They are representative photos of the ingredient, not of Base's own food, and the site says so. Items with no accurate free photo keep a drawn illustration. See [`scripts/photos/README.md`](scripts/photos/README.md).
+
 ## Containers
 
 Four reusable glass sizes, planned per ingredient (cooked legumes at 2.4× dry weight; dairy in jars). Customers can **borrow** (refundable deposit, shown separately from the food price), **own** (one-time purchase) or **return** last week's set. Oven, freezer and dishwasher ratings are pending a final specification, so the site makes no such claims. See **[docs/containers.md](docs/containers.md)**.

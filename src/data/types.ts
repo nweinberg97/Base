@@ -80,6 +80,7 @@ export interface Ingredient {
   useCasesSourceId: number | null;
   provenance: Provenance[];
   scores: MonthScore[];       // 12 entries, Jan..Dec; empty for pantry basics
+  photo: Photo | null;
 }
 
 export interface UseCase { slug: string; name: string; group: 'meal' | 'dish' | 'technique' }
@@ -113,6 +114,21 @@ export interface Basket {
   recipes: { recipeId: number; baseIngredientsUsed: number }[];
 }
 
+/** A credited, freely licensed photo (Wikimedia Commons). Paths are root-relative. */
+export interface Photo {
+  src: string;          // e.g. /photos/kale.webp
+  srcSquare: string;    // 480×480 crop for bowls and thumbnails
+  width: number;
+  height: number;
+  alt: string;
+  title: string;
+  author: string;
+  license: string;
+  licenseUrl: string | null;
+  sourceUrl: string;
+  sourceId: number;
+}
+
 export interface AddOn {
   id: number;
   slug: string;
@@ -127,6 +143,7 @@ export interface AddOn {
   sourceId: number;
   verificationStatus: VerificationStatus;
   pairsWith: string | null;
+  photo: Photo | null;
 }
 
 export interface RecipeLine {

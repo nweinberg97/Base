@@ -3,7 +3,7 @@
 // (or replacing it with an API), not the storefront.
 import { all, get, type Db } from './connection.ts';
 import type {
-  AddOn, Basket, Container, ContainerAccount, DataSnapshot, Ingredient, MonthScore, PickupLocation, Recipe, ResearchRun,
+  AddOn, Photo, Basket, Container, ContainerAccount, DataSnapshot, Ingredient, MonthScore, PickupLocation, Recipe, ResearchRun,
   Source, Supplier, UseCase, VerificationStatus,
 } from '../types.ts';
 import { METHODOLOGY_VERSION } from '../../research/scoring.ts';
@@ -37,6 +37,12 @@ export function exportSnapshot(db: Db, opts: { region?: string; weekOf: string; 
   const prov = all<Row>(db, 'SELECT * FROM ingredient_sources ORDER BY datum_type');
   const scores = all<Row>(db, 'SELECT * FROM derived_scores WHERE region = ? ORDER BY reference_month', region);
 
+  const photoRows = all<Row>(db, 'SELECT * FROM photos');
+  const toPhoto = (r: Row | undefined): Photo | null => (r ? {
+    src: `/${r.file}`, srcSquare: `/${r.file_square}`, width: r.width, height: r.height, alt: r.alt, title: r.title,
+    author: r.author, license: r.license, licenseUrl: r.license_url, sourceUrl: r.source_url, sourceId: r.source_id,
+  } : null);
+
   const ingredients: Ingredient[] = all<Row>(db, 'SELECT * FROM ingredients ORDER BY name').map((i) => {
     const n = nutrition.get(i.id);
     const p = prices.get(i.id);
@@ -55,6 +61,7 @@ export function exportSnapshot(db: Db, opts: { region?: string; weekOf: string; 
       purchaseForm: i.purchase_form, prepForm: i.prep_form, needsContainer: i.needs_container === 1,
       isPantryBasic: i.is_pantry_basic === 1, why: i.editorial_why,
       visual: { color: i.visual_color, accent: i.visual_accent, texture: i.visual_texture },
+      photo: toPhoto(photoRows.find((x) => x.ingredient_id === i.id)),
       nutrition: {
         calories: n.calories, protein: n.protein_g, carbohydrates: n.carbohydrates_g, fat: n.fat_g, fiber: n.fiber_g,
         sodium: n.sodium_mg, sourceId: n.source_id, status: n.verification_status, notes: n.notes,
@@ -101,6 +108,7 @@ export function exportSnapshot(db: Db, opts: { region?: string; weekOf: string; 
     id: a.id, slug: a.slug, name: a.name, description: a.description, category: a.category, price: a.price, unit: a.unit,
     ingredientId: a.ingredient_id, seasons: a.seasons.split(','), status: a.status, sourceId: a.source_id,
     verificationStatus: a.verification_status, pairsWith: a.pairs_with,
+    photo: toPhoto(photoRows.find((x) => x.add_on_id === a.id)),
   }));
 
   const lines = all<Row>(db, 'SELECT * FROM recipe_ingredients ORDER BY id');

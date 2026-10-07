@@ -56,7 +56,7 @@ export function RecipeDetail({ slug }: { slug: string }) {
     <article className="page recipe-page">
       <header className="recipe-head">
         <div className="recipe-head-bowls" aria-hidden="true">
-          {main.map((g, i) => g && <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${r.slug}-${i}`} size={150} />)}
+          {main.map((g, i) => g && <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${r.slug}-${i}`} size={150} photo={g.photo} />)}
         </div>
         <div>
           <h1>{r.name}</h1>

@@ -7,6 +7,8 @@ import type { DataStatus, Ingredient } from '../data/types.ts';
 import { SeasonStrip, StatusBadge, STATUS_INFO } from '../components/data.tsx';
 import { FilterChips, EmptyState } from '../components/ui.tsx';
 import { Link } from '../lib/router.tsx';
+import { withBase } from '../lib/base-path.ts';
+import { PhotoCredit } from '../components/Photo.tsx';
 import { approx, CATEGORY_LABEL, CLASS_LABEL, score as fmt } from '../lib/format.ts';
 import { BASE_SCORE_WEIGHTS, COMPARISON_GROUPS, VERSATILITY_TARGETS } from '../research/scoring.ts';
 import { BUILDER_RULES, slotsFor } from '../research/basket-builder.ts';
@@ -385,6 +387,24 @@ export function ResearchData() {
           labelled placeholder that shows how sourcing would be recorded.</p>
         <ul className="plain">
           {s.suppliers.map((sp) => <li key={sp.id}><strong>{sp.name}</strong> <StatusBadge status={sp.status} /> <span className="muted">{sp.region}. {sp.notes}</span></li>)}
+        </ul>
+      </section>
+
+      <section className="section" aria-labelledby="photos" id="photo-credits">
+        <h2 id="photos">Photo credits</h2>
+        <p className="section-lede">The food photos on this site come from Wikimedia Commons under free licences (public domain, CC0, CC BY
+          and CC BY-SA). They show what each ingredient or add-on looks like; they are not photos of Base’s own food. Each one is credited to
+          its author below, with a link to the original and its licence.</p>
+        <ul className="plain photo-credits">
+          {[...s.ingredients.map((i) => ({ name: i.name, href: `/ingredients/${i.slug}`, photo: i.photo })),
+            ...s.addOns.map((a) => ({ name: `${a.name} (add-on)`, href: '/addons', photo: a.photo }))]
+            .filter((x) => x.photo).sort((a, b) => a.name.localeCompare(b.name))
+            .map((x) => (
+              <li key={x.name}>
+                <img src={withBase(x.photo!.srcSquare)} alt="" loading="lazy" width={48} height={48} />
+                <span><strong><Link href={x.href}>{x.name}</Link></strong><PhotoCredit photo={x.photo!} prefix={x.photo!.title} /></span>
+              </li>
+            ))}
         </ul>
       </section>
 

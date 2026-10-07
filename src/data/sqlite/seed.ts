@@ -9,6 +9,7 @@ import {
 } from '../../../db/seeds/catalog.ts';
 import { RECIPES } from '../../../db/seeds/recipes.ts';
 import { priceHistory } from '../../../db/seeds/price-history.ts';
+import { PHOTOS } from '../../../db/seeds/photos.ts';
 
 export const REGION = 'BC';
 export const SEED_DATE = '2026-10-05';          // when the seed data was assembled
@@ -135,8 +136,21 @@ export function seed(db: Db): Record<string, number> {
       for (const [slug, note] of r.addOns ?? []) insRI.run(rid, null, id('add_ons', slug), null, null, 1, note);
     }
 
+    // photos: each slug is an ingredient or an add-on
+    const insPhoto = db.prepare(`INSERT INTO photos (ingredient_id, add_on_id, source_id, file, file_square, width, height, alt, title,
+      author, license, license_url, source_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    const maybeId = (table: string, slug: string) =>
+      (db.prepare(`SELECT id FROM ${table} WHERE slug = ?`).get(slug) as { id: number } | undefined)?.id ?? null;
+    for (const [slug, p] of Object.entries(PHOTOS)) {
+      const ing = maybeId('ingredients', slug);
+      const add = ing === null ? maybeId('add_ons', slug) : null;
+      if (ing === null && add === null) throw new Error(`Photo for unknown ingredient or add-on "${slug}"`);
+      insPhoto.run(ing, add, SRC['wikimedia-commons-photos'], `photos/${slug}.webp`, `photos/${slug}-sq.webp`, p.width, p.height,
+        p.alt, p.title, p.author, p.license, p.licenseUrl || null, p.sourceUrl);
+    }
+
     const count = (t: string) => (db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get() as { n: number }).n;
     return Object.fromEntries(['sources', 'suppliers', 'ingredients', 'nutrition', 'prices', 'price_history', 'seasonality',
-      'use_cases', 'ingredient_use_cases', 'add_ons', 'containers', 'pickup_locations', 'recipes'].map((t) => [t, count(t)]));
+      'use_cases', 'ingredient_use_cases', 'add_ons', 'containers', 'pickup_locations', 'recipes', 'photos'].map((t) => [t, count(t)]));
   });
 }

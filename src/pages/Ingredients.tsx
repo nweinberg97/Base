@@ -5,6 +5,7 @@ import {
 } from '../data/api.ts';
 import type { Ingredient } from '../data/types.ts';
 import { BowlArt } from '../components/BowlArt.tsx';
+import { FoodPhoto } from '../components/Photo.tsx';
 import { IngredientRow, RecipeCard } from '../components/cards.tsx';
 import { EmptyState, FilterChips } from '../components/ui.tsx';
 import { DataValue, NutritionTable, ScorePanel, SeasonStrip, SourceCitation, Sparkline, StatusBadge } from '../components/data.tsx';
@@ -91,7 +92,10 @@ export function IngredientDetail({ slug }: { slug: string }) {
   return (
     <article className="page ingredient-page">
       <header className="ingredient-head">
-        <BowlArt visual={i.visual} seed={i.slug} size={220} label={`${i.name}, illustrated in a bowl`} />
+        {i.photo
+          ? <FoodPhoto photo={i.photo} eager className="ingredient-photo"
+              caption={i.isPantryBasic ? 'Representative photo.' : `Representative photo. In your Base: ${i.prepForm}.`} />
+          : <BowlArt visual={i.visual} seed={i.slug} size={220} label={`${i.name}, illustrated in a bowl`} />}
         <div>
           <p className="kicker">{CATEGORY_LABEL[i.category]}{s && <span className={`role role-${s.classification}`}>{CLASS_LABEL[s.classification]}</span>}</p>
           <h1>{i.name}</h1>

@@ -63,6 +63,12 @@ export const SOURCES: SourceSeed[] = [
     retrieved: '2026-10-05',
     description: 'Example recipes written by the Base team under demo creator names to show how the community layer works. Not submitted by real members.',
   },
+  {
+    slug: 'wikimedia-commons-photos', name: 'Wikimedia Commons (photos)',
+    url: 'https://commons.wikimedia.org/', type: 'community', region: 'General',
+    retrieved: '2026-10-07',
+    description: 'Freely licensed photographs (public domain, CC0, CC BY, CC BY-SA) chosen by hand to show each ingredient or add-on. Representative photos, not pictures of Base’s own food; each is credited to its author with its licence.',
+  },
 ];
 
 // ---------------------------------------------------------------------------

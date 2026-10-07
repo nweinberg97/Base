@@ -135,7 +135,7 @@ export function Home() {
         </div>
         <div className="why-grid">
           <article className="why-example">
-            <BowlArt visual={potatoes.visual} seed={potatoes.slug} size={120} />
+            <BowlArt visual={potatoes.visual} seed={potatoes.slug} size={120} photo={potatoes.photo} />
             <h3>Why potatoes?</h3>
             <p>{potatoes.why}</p>
             {potatoScore && <div className="mini-scores">

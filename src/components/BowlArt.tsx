@@ -1,7 +1,9 @@
-// A prep bowl seen from above, filled with an ingredient. Drawn from the ingredient's
-// own data (colour, accent, texture) with seeded randomness, so chickpeas always look
-// like the same chickpeas. This is Base's food imagery: no stock photos, and nothing
-// pretending to be a photograph of a real product.
+// A prep bowl seen from above, filled with an ingredient. When the ingredient has a
+// credited photo (Wikimedia Commons, see db/seeds/photos.ts) the photo fills the bowl;
+// otherwise it is drawn from the ingredient's own data (colour, accent, texture) with
+// seeded randomness, so chickpeas always look like the same chickpeas.
+import type { Photo } from '../data/types.ts';
+import { withBase } from '../lib/base-path.ts';
 import { useId, type ReactElement } from 'react';
 import { seeded } from '../lib/random.ts';
 
@@ -17,6 +19,7 @@ const darker = (c: string, t = 0.18) => mix(c, '#2a1d12', t);
 const lighter = (c: string, t = 0.35) => mix(c, '#ffffff', t);
 
 const R = 33; // food radius
+const PHOTO_R = 38.5; // photos fill the whole inside of the bowl
 
 /** Jittered grid of points inside the food disc. */
 function points(rng: () => number, spacing: number, jitter = 0.45): [number, number][] {
@@ -184,8 +187,10 @@ function texture(v: BowlVisual, rng: () => number): ReactElement[] {
   return els;
 }
 
-export function BowlArt({ visual, seed, size = 120, label, className }: {
+export function BowlArt({ visual, seed, size = 120, label, className, photo }: {
   visual: BowlVisual; seed: string; size?: number | string; label?: string; className?: string;
+  /** A real photo of the food, shown inside the bowl in place of the illustration. */
+  photo?: Pick<Photo, 'srcSquare'> | null;
 }) {
   const id = useId().replace(/:/g, '');
   const rng = seeded(seed);
@@ -202,14 +207,16 @@ export function BowlArt({ visual, seed, size = 120, label, className }: {
           <stop offset="0.72" stopColor="#000" stopOpacity="0" />
           <stop offset="1" stopColor="#3a2c1c" stopOpacity="0.22" />
         </radialGradient>
-        <clipPath id={`c${id}`}><circle cx="50" cy="50" r={R} /></clipPath>
+        <clipPath id={`c${id}`}><circle cx="50" cy="50" r={photo ? PHOTO_R : R} /></clipPath>
       </defs>
       <circle cx="52" cy="54" r="48" fill={`url(#s${id})`} />
       <circle cx="50" cy="50" r="45.5" fill="#FDFCFA" stroke="#E2DED5" strokeWidth="0.6" />
       <circle cx="50" cy="50" r="38.5" fill="#EFECE6" />
       <g clipPath={`url(#c${id})`}>
         <circle cx="50" cy="50" r={R} fill={base} />
-        {texture(visual, rng)}
+        {photo
+          ? <image href={withBase(photo.srcSquare)} x={50 - PHOTO_R} y={50 - PHOTO_R} width={PHOTO_R * 2} height={PHOTO_R * 2} preserveAspectRatio="xMidYMid slice" />
+          : texture(visual, rng)}
       </g>
       <circle cx="50" cy="50" r="38.5" fill={`url(#w${id})`} />
       <path d="M17 38 A 35 35 0 0 1 38 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.9" />

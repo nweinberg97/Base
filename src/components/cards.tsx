@@ -4,6 +4,7 @@ import { getIngredientById, scoreFor, formatWeek } from '../data/api.ts';
 import { Link } from '../lib/router.tsx';
 import { approx, ADD_ON_CATEGORY_LABEL, CATEGORY_LABEL, CLASS_LABEL, grams, lowerName, minutes, money } from '../lib/format.ts';
 import { BowlArt } from './BowlArt.tsx';
+import { PhotoThumb } from './Photo.tsx';
 import { SeasonStrip, StatusBadge } from './data.tsx';
 import { useBuild } from '../lib/build-state.tsx';
 
@@ -12,7 +13,7 @@ export function IngredientTile({ ingredient, quantityG, note, size = 132 }:
   { ingredient: Ingredient; quantityG?: number; note?: string; size?: number }) {
   return (
     <Link href={`/ingredients/${ingredient.slug}`} className="tile">
-      <BowlArt visual={ingredient.visual} seed={ingredient.slug} size={size} className="tile-bowl" />
+      <BowlArt visual={ingredient.visual} seed={ingredient.slug} size={size} className="tile-bowl" photo={ingredient.photo} />
       <span className="tile-name">{ingredient.name}</span>
       {(quantityG || note) && <span className="tile-note">{quantityG ? grams(quantityG) : note}</span>}
     </Link>
@@ -23,7 +24,7 @@ export function IngredientRow({ ingredient, month }: { ingredient: Ingredient; m
   const sc = scoreFor(ingredient, month);
   return (
     <li className="ingredient-row">
-      <BowlArt visual={ingredient.visual} seed={ingredient.slug} size={64} />
+      <BowlArt visual={ingredient.visual} seed={ingredient.slug} size={64} photo={ingredient.photo} />
       <div className="ingredient-row-main">
         <h3><Link href={`/ingredients/${ingredient.slug}`}>{ingredient.name}</Link></h3>
         <p>{ingredient.description}</p>
@@ -44,7 +45,7 @@ export function BasketCard({ basket, price, children }: { basket: Basket; price?
   return (
     <article className={`basket-card season-${basket.season}`}>
       <div className="basket-card-bowls" aria-hidden="true">
-        {ings.slice(0, 8).map((g) => <BowlArt key={g.slug} visual={g.visual} seed={g.slug} size={56} />)}
+        {ings.slice(0, 8).map((g) => <BowlArt key={g.slug} visual={g.visual} seed={g.slug} size={56} photo={g.photo} />)}
       </div>
       <div className="basket-card-text">
         <p className="basket-card-when">{when}{basket.status === 'current' && <span className="pill">This week</span>}{basket.status === 'upcoming' && <span className="pill pill-quiet">Next week</span>}</p>
@@ -64,7 +65,7 @@ export function RecipeCard({ recipe, used, basketName }: { recipe: Recipe; used?
   return (
     <article className="recipe-card">
       <div className="recipe-card-bowls" aria-hidden="true">
-        {main.map((g, i) => <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${recipe.slug}-${i}`} size={92} />)}
+        {main.map((g, i) => <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${recipe.slug}-${i}`} size={92} photo={g.photo} />)}
       </div>
       <div className="recipe-card-text">
         <h3><Link href={`/recipes/${recipe.slug}`}>{recipe.name}</Link></h3>
@@ -91,7 +92,8 @@ export function AddOnCard({ addOn, reason, selectable = true }: { addOn: AddOn; 
   const selected = build.addOnIds.includes(addOn.id);
   const unavailable = addOn.status === 'sold_out';
   return (
-    <article className={`addon-card${selected ? ' is-selected' : ''}`}>
+    <article className={`addon-card${selected ? ' is-selected' : ''}${addOn.photo ? ' has-photo' : ''}`}>
+      {addOn.photo && <PhotoThumb photo={addOn.photo} className="addon-photo" />}
       <p className="addon-cat">{ADD_ON_CATEGORY_LABEL[addOn.category]}{addOn.status === 'seasonal' && <span className="pill pill-quiet">Seasonal</span>}<StatusBadge status={addOn.verificationStatus} /></p>
       <h3>{addOn.name}</h3>
       <p className="addon-desc">{addOn.description}</p>

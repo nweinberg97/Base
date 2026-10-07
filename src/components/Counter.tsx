@@ -16,7 +16,7 @@ export function Counter({ lines, caption, labels = true }: { lines: BasketLine[]
             <li key={l.ingredient.slug} style={{ ['--i' as string]: i }}>
               <Link href={`/ingredients/${l.ingredient.slug}`} className="counter-item">
                 <span className="counter-bowl" style={{ ['--scale' as string]: scale.toFixed(3) }}>
-                  <BowlArt visual={l.ingredient.visual} seed={l.ingredient.slug} size="100%" />
+                  <BowlArt visual={l.ingredient.visual} seed={l.ingredient.slug} size="100%" photo={l.ingredient.photo} />
                 </span>
                 {labels && <span className="counter-label"><span className="counter-name">{l.ingredient.name}</span>
                   <span className="counter-qty">{grams(l.item.quantityG)}</span></span>}

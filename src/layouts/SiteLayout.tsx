@@ -76,11 +76,13 @@ function Footer() {
             <li><Link href="/how-it-works">How it works</Link></li>
             <li><Link href="/research">The Base Index</Link></li>
             <li><Link href="/research/data">Data and sources</Link></li>
+            <li><Link href="/research/data#photo-credits">Photo credits</Link></li>
           </ul>
         </nav>
         <p className="footer-note">
           Base is a prototype. Nothing on this site can be bought, prices and suppliers are estimates or demos, and pickup
-          locations are placeholders. This week is the {SEASON_LABEL[current.basket.season].toLowerCase()} Base for the week of {current.weekLabel}.
+          locations are placeholders. Food photos are representative images from Wikimedia Commons, credited on the
+          data page. This week is the {SEASON_LABEL[current.basket.season].toLowerCase()} Base for the week of {current.weekLabel}.
         </p>
       </div>
     </footer>
