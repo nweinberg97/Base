@@ -6,7 +6,7 @@ All type is converted to outlines, so the SVGs have no font dependency.
 """
 import math, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from geo import Shape, K, circle, rrect, text_shape, render
+from geo import Shape, K, circle, rrect, text_shape, render, stem_width
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "logo")
 INK, PAPER = "#111110", "#F6F3EC"
@@ -17,53 +17,43 @@ def font(name):
         p = os.path.join(d, name)
         if os.path.exists(p): return p
     sys.exit(f"Install {name}")
-WORD_FONT, TAG_FONT = font("Poppins-Light.ttf"), font("Poppins-MediumItalic.ttf")
-WORD_TRACK, TAG_TRACK = -0.01, 0.0
+WORD_FONT, TAG_FONT = font("Poppins-Regular.ttf"), font("Poppins-Regular.ttf")
+WORD_TRACK, TAG_TRACK = -0.01, 0.01
 
 # ---------- the mark ----------------------------------------------------
-# A pot — the base of food — with four bubbles rising out of it.
-# The four bubbles are the four corners of a strong base: one low in the
-# centre, two lifting to the sides, one on top.
-def arc(s, cx, cy, r, a0, a1):
-    k = K * r
-    c0, s0 = math.cos(math.radians(a0)), math.sin(math.radians(a0))
-    c1, s1 = math.cos(math.radians(a1)), math.sin(math.radians(a1))
-    p0, p1 = (cx + r * c0, cy + r * s0), (cx + r * c1, cy + r * s1)
-    sg = 1 if a1 > a0 else -1
-    s.C((p0[0] - sg * k * s0, p0[1] + sg * k * c0), (p1[0] + sg * k * s1, p1[1] - sg * k * c1), p1)
-
-def handle(xn, xf, y0, y1, t, r):
-    """C-shaped handle drawn as one closed path, open toward the pot."""
-    ri, s = max(r - t, 0.001), Shape()
-    if xn > xf:   # left
-        s.M(xn, y0).L(xf + r, y0); arc(s, xf + r, y0 + r, r, 270, 180); s.L(xf, y1 - r)
-        arc(s, xf + r, y1 - r, r, 180, 90); s.L(xn, y1).L(xn, y1 - t).L(xf + t + ri, y1 - t)
-        arc(s, xf + t + ri, y1 - t - ri, ri, 90, 180); s.L(xf + t, y0 + t + ri)
-        arc(s, xf + t + ri, y0 + t + ri, ri, 180, 270); s.L(xn, y0 + t)
-    else:         # right
-        s.M(xn, y0).L(xn, y0 + t).L(xf - t - ri, y0 + t); arc(s, xf - t - ri, y0 + t + ri, ri, 270, 360)
-        s.L(xf - t, y1 - t - ri); arc(s, xf - t - ri, y1 - t - ri, ri, 0, 90); s.L(xn, y1 - t)
-        s.L(xn, y1).L(xf - r, y1); arc(s, xf - r, y1 - r, r, 90, 0); s.L(xf, y0 + r)
-        arc(s, xf - r, y0 + r, r, 360, 270); s.L(xn, y0)
+# A pot — the base of food — drawn as a single line, with four bubbles rising
+# out of it in a diamond: the four corners of a strong base.
+# Everything is measured in strokes (t = 1). In every lockup the stroke is
+# scaled to match the wordmark's stem weight, so mark and type read as one.
+STROKE = 1.0
+def pot_line(x0, x1, yT, yB, rb, t):
+    """The pot as ONE closed path: a U-shaped stroke with round caps."""
+    h, ri = t / 2, rb - t
+    s = Shape().M(x0, yT).L(x0, yB - rb)
+    s.C((x0, yB - rb + K * rb), (x0 + rb - K * rb, yB), (x0 + rb, yB)).L(x1 - rb, yB)
+    s.C((x1 - rb + K * rb, yB), (x1, yB - rb + K * rb), (x1, yB - rb)).L(x1, yT)
+    s.C((x1, yT - K * h), (x1 - h + K * h, yT - h), (x1 - h, yT - h))
+    s.C((x1 - h - K * h, yT - h), (x1 - t, yT - K * h), (x1 - t, yT)).L(x1 - t, yB - t - ri)
+    s.C((x1 - t, yB - t - ri + K * ri), (x1 - t - ri + K * ri, yB - t), (x1 - t - ri, yB - t)).L(x0 + t + ri, yB - t)
+    s.C((x0 + t + ri - K * ri, yB - t), (x0 + t, yB - t - ri + K * ri), (x0 + t, yB - t - ri)).L(x0 + t, yT)
+    s.C((x0 + t, yT - K * h), (x0 + h + K * h, yT - h), (x0 + h, yT - h))
+    s.C((x0 + h - K * h, yT - h), (x0, yT - K * h), (x0, yT))
     return s.Z()
 
 def build_mark():
-    W, H, rb = 17.0, 10.4, 4.6            # pot body
-    rim, over, g = 1.5, 0.7, 0.85          # lid band, its overhang, the universal gap
-    hw, hh, ht, hr = 3.0, 3.4, 1.15, 1.2   # handles
-    r, bgap, lift = 1.95, 0.6, 1.1         # bubbles
-    x0, x1 = -W / 2, W / 2
-    parts = [rrect(x0, 0, x1, H, 0.45, rb),
-             rrect(x0 - over, -g - rim, x1 + over, -g, rim / 2, rim / 2),
-             handle(x0 + 0.001, x0 - hw, 0.6, 0.6 + hh, ht, hr),
-             handle(x1 - 0.001, x1 + hw, 0.6, 0.6 + hh, ht, hr)]
-    D, yb = 2 * r + bgap, -g - rim - g - r
-    for x, y in [(0, yb), (-D, yb - lift), (D, yb - lift), (0, yb - lift - D * 0.9)]:
-        parts.append(circle(x, y, r))
-    s = Shape()
-    for p in parts: s.extend(p)
-    x0, y0, x1, y1 = s.bbox()
-    return s.transform(1, tx=-x0, ty=-y0), x1 - x0, y1 - y0
+    t = STROKE
+    W, D, rb = 5.6, 5.8, 4.4        # half-width, depth and bottom radius of the pot
+    over, g = 1.3, 0.85             # lid overhang (the handles) and the gap unit
+    r, s = 0.72, 1.38               # bubble radius and diamond spacing
+    lid = rrect(-W - over, 0, W + over, t, t / 2, t / 2)
+    top = t + g + t / 2             # walls end in round caps, one gap below the lid
+    parts = [lid, pot_line(-W, W, top, top + D, rb, t)]
+    cy = -g - r
+    parts += [circle(x, y, r) for x, y in [(0, cy), (-s, cy - s), (s, cy - s), (0, cy - 2 * s)]]
+    m = Shape()
+    for p in parts: m.extend(p)
+    x0, y0, x1, y1 = m.bbox()
+    return m.transform(1, tx=-x0, ty=-y0), x1 - x0, y1 - y0
 
 MARK, MW, MH = build_mark()
 
@@ -73,6 +63,8 @@ def outlined(fp, txt, size, tr):
     return s.transform(1, tx=-x0), x1 - x0, -y0, y1  # shape(baseline y=0), width, ascent, descent
 
 WORD, WW, WASC, WDESC = outlined(WORD_FONT, "Base", 200, WORD_TRACK)
+STEM = stem_width(WORD_FONT, 200)   # wordmark stem at this size
+MS = STEM * 0.82 / STROKE            # mark scale where its line matches the type
 
 # ---------- writers ------------------------------------------------------
 def svg(name, items, w, h, bg=None, rx=0, title="Base"):
@@ -104,7 +96,7 @@ os.makedirs(os.path.join(ROOT, "svg"), exist_ok=True)
 os.makedirs(os.path.join(ROOT, "png"), exist_ok=True)
 
 # Mark alone: clear space = 1 dot diameter (5.4) each side
-P = 3.9
+P = 1.6
 themed("base-mark", lambda c: [(MARK.transform(1, tx=P, ty=P), c)], MW + 2 * P, MH + 2 * P, title="Base mark", scale=24)
 
 # Wordmark alone
@@ -114,11 +106,11 @@ themed("base-wordmark", lambda c: [(WORD.transform(1, tx=pw, ty=pw + WASC), c)],
 
 # Stacked lockup (primary): mark / wordmark / tagline
 def stacked(with_tag=True):
-    ms = (WW * 0.46) / MW                   # mark = 34% of wordmark width
+    ms = MS * 1.2                          # mark a little larger above the name
     tag, tw, tasc, tdesc = outlined(TAG_FONT, TAG, 10, TAG_TRACK)
-    ts = (WW * 1.06) / tw                   # tagline spans the wordmark
-    gap1, gap2, pad = WASC * 0.16, WASC * 0.30, WASC * 0.6
-    W = max(WW, WW * 1.06) + 2 * pad
+    ts = (WW * 1.0) / tw                   # tagline spans the wordmark
+    gap1, gap2, pad = WASC * 0.32, WASC * 0.34, WASC * 0.6
+    W = WW + 2 * pad
     y_mark = pad
     y_base = y_mark + MH * ms + gap1 + WASC
     y_tag = y_base + WDESC + gap2 + tasc * ts
@@ -132,16 +124,16 @@ def stacked(with_tag=True):
 b, W, H = stacked(True);  themed("base-lockup-stacked", b, W, H, title="Base — mise en place for everyday cooks")
 b, W, H = stacked(False); themed("base-lockup-stacked-notag", b, W, H, title="Base")
 
-# Horizontal lockup: mark height = wordmark ascender, sitting on the baseline
+# Horizontal lockup: mark line weight matches the type; pot sits on the baseline
 def horizontal(with_tag=True):
-    ms = (WASC * 1.0) / MH
-    gap = WASC * 0.30
+    ms = MS
+    gap = WASC * 0.26
     tag, tw, tasc, tdesc = outlined(TAG_FONT, TAG, 10, TAG_TRACK)
-    ts = (WASC * 0.15) / tasc
+    ts = (WASC * 0.13) / tasc
     pad = WASC * 0.4
     x_word = pad + MW * ms + gap
     W = max(x_word + WW, x_word + tw * ts) + pad
-    y_base = pad + WASC
+    y_base = pad + max(WASC, MH * ms)
     y_tag = y_base + WDESC + WASC * 0.22 + tasc * ts
     H = (y_tag + tdesc * ts if with_tag else y_base + WDESC) + pad
     def b(c):
@@ -158,6 +150,6 @@ def icon(size, frac, rxf, name, scale):
     s = size * frac / max(MW, MH)
     tx, ty = (size - MW * s) / 2, (size - MH * s) / 2
     emit(name, [(MARK.transform(s, tx=tx, ty=ty), PAPER)], size, size, bg=INK, rx=size * rxf, title="Base", scale=scale)
-icon(1024, 0.58, 0.225, "base-app-icon", 1)
-icon(64, 0.74, 0.22, "base-favicon", 8)
+icon(1024, 0.54, 0.225, "base-app-icon", 1)
+icon(64, 0.78, 0.22, "base-favicon", 8)
 print("done")

@@ -160,3 +160,34 @@ def render(shapes, w, h, path, bg="#ffffff", scale=1.0, dpi=100):
         ax.add_patch(PathPatch(sh.mpl(), facecolor=col, edgecolor="none", lw=0))
     fig.savefig(path, dpi=dpi, transparent=not bg, facecolor=fig.get_facecolor())
     plt.close(fig)
+
+
+def reverse(shape):
+    """Reverse winding of every subpath (to cut holes under nonzero fill)."""
+    out = Shape(); sub = []
+    def flush():
+        if not sub: return
+        start = sub[0][1][0]; segs = []; cur = start
+        for op, ps in sub[1:]:
+            if op in ("L", "C"): segs.append((cur, op, ps)); cur = ps[-1]
+        out.M(*cur)
+        for st, op, ps in reversed(segs):
+            if op == "L": out.L(*st)
+            else: out.C(ps[1], ps[0], st)
+        out.Z()
+    for op, ps in shape.cmds:
+        if op == "M": flush(); sub.clear(); sub.append((op, ps))
+        elif op == "Z": pass
+        else: sub.append((op, ps))
+    flush(); return out
+
+
+def ring(cx, cy, r, t):
+    return circle(cx, cy, r).extend(circle(cx, cy, r - t, ccw=True))
+
+
+def stem_width(fontpath, size, ch="l"):
+    f = TTFont(fontpath); gs = f.getGlyphSet(); n = f.getBestCmap()[ord(ch)]
+    from fontTools.pens.boundsPen import BoundsPen
+    bp = BoundsPen(gs); gs[n].draw(bp); x0, y0, x1, y1 = bp.bounds
+    return (x1 - x0) * size / f["head"].unitsPerEm

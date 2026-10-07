@@ -6,27 +6,29 @@
 
 ## The idea
 
-A pot — the base of food — with four bubbles rising out of it. It refines the original sketch rather than replacing it: same pot, same handles, same bubbling ingredients, drawn with consistent geometry.
+A pot — the base of food — with four bubbles rising out of it. The bubbles sit in a diamond: the four corners of a strong base.
 
-- **Four bubbles** are the four corners of a strong base: one low in the centre, two lifting to either side, one on top. The rising arrangement keeps the sense of food bubbling up out of the pot.
-- **The lid band** floats just above the pot on a single gap unit, as in the original.
-- **The handles** are open C-shapes, each drawn as one clean path.
+The mark follows the habits of the best marks (Apple, Airbnb, Nike): as few parts as possible, one line weight throughout, and generous negative space.
 
-The wordmark is "Base" in Poppins Light, converted to outlines — light and quiet like the original. The tagline is Poppins Medium Italic.
+- **One stroke weight.** The pot and lid are a single monoline drawn at the same weight as the letters of the wordmark, so mark and name read as one object.
+- **Four parts only.** Lid, pot, and the four-bubble diamond. The lid line extends past the pot to suggest handles without drawing them.
+- **Round caps everywhere,** matching the rounded geometry of Poppins.
+
+The wordmark is "Base" in Poppins Regular, converted to outlines. The tagline is Poppins Regular, lowercase, sized to span the wordmark.
 
 ## Construction
 
-Everything is drawn on one gap unit **g** (0.85 of a grid unit):
+Everything is measured in strokes (**t**). In every lockup the stroke is scaled to 0.82 of the wordmark's stem.
 
-| Element | Size (grid units) |
+| Element | Size |
 | --- | --- |
-| Pot body | 17 wide × 10.4 deep, bottom corner radius 4.6 |
-| Lid band | 1.5 thick, overhangs the pot by 0.7 each side, one gap above the pot |
-| Handles | 3.0 out × 3.4 tall, 1.15 stroke |
-| Bubbles | radius 1.95, 0.6 apart; sides lifted 1.1 above the centre bubble |
-| Gap between every part | g |
+| Line weight | 1t, round caps |
+| Pot | 11.2t wide × 5.8t deep, bottom radius 4.4t |
+| Lid | extends 1.3t past the pot on each side |
+| Gaps (bubbles → lid → pot) | 0.85t |
+| Bubbles | radius 0.72t, set on a diamond 1.38t from centre |
 
-Minimum clear space around any lockup: one bubble diameter. Minimum size: mark 16 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
+Minimum clear space around any lockup: the height of the lid line plus one gap. Minimum size: mark 20 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
 
 ## Colour
 
