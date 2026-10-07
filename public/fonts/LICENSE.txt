@@ -1,0 +1,7 @@
+Poppins — Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+Inter — Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
+
+Both fonts are licensed under the SIL Open Font License, Version 1.1:
+https://openfontlicense.org
+
+The files in this folder are Latin subsets converted to WOFF for the web.

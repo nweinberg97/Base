@@ -1,0 +1,37 @@
+{
+  "name": "base",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Base — a weekly seasonal foundation for cooking well. Storefront prototype + SQLite research engine.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "db:migrate": "node --disable-warning=ExperimentalWarning scripts/db-migrate.ts",
+    "db:seed": "node --disable-warning=ExperimentalWarning scripts/db-seed.ts",
+    "db:reset": "node --disable-warning=ExperimentalWarning scripts/db-migrate.ts --fresh && npm run db:seed",
+    "research:rank": "node --disable-warning=ExperimentalWarning scripts/research-rank.ts",
+    "research:baskets": "node --disable-warning=ExperimentalWarning scripts/research-baskets.ts",
+    "research:report": "node --disable-warning=ExperimentalWarning scripts/research-report.ts",
+    "data:validate": "node --disable-warning=ExperimentalWarning scripts/data-validate.ts",
+    "data:export": "node --disable-warning=ExperimentalWarning scripts/data-export.ts",
+    "data": "npm run db:reset && npm run research:rank && npm run research:baskets && npm run data:validate && npm run data:export",
+    "dev": "node --disable-warning=ExperimentalWarning scripts/dev.ts",
+    "build": "npm run data && node --disable-warning=ExperimentalWarning scripts/build.ts",
+    "preview": "node scripts/preview.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --disable-warning=ExperimentalWarning --test \"tests/**/*.test.ts\""
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^6.0.3"
+  }
+}
