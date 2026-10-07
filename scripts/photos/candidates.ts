@@ -36,6 +36,8 @@ async function search(query: string): Promise<Candidate[]> {
     const md = ii.extmetadata ?? {};
     const license = strip(md.LicenseShortName?.value);
     if (!ALLOWED.test(license) || /nonfree|fair use/i.test(license)) continue;
+    // Real photographs only: skip AI-generated images.
+    if (/craiyon|stable diffusion|dall-?e|midjourney|ai[- ]generated/i.test(`${p.title} ${strip(md.Artist?.value)} ${strip(md.Categories?.value)}`)) continue;
     out.push({
       title: p.title, url: ii.url, thumb: ii.thumburl, width: ii.width, height: ii.height,
       author: strip(md.Artist?.value) || 'Unknown', license, licenseUrl: md.LicenseUrl?.value ?? '',

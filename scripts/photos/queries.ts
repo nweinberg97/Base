@@ -8,7 +8,7 @@ export const PHOTO_QUERIES: Record<string, string[]> = {
   'pork-shoulder': ['raw pork meat', 'pork butt raw', 'raw pork cuts'],
   'ground-beef': ['raw ground beef', 'minced beef raw'],
   'firm-tofu': ['tofu', 'block of tofu', 'silken firm tofu'],
-  'sockeye-salmon': ['sockeye salmon fillet', 'raw salmon fillet'],
+  'sockeye-salmon': ['sockeye salmon meat', 'red salmon fillet', 'Oncorhynchus nerka fillet', 'sockeye salmon raw'],
   chickpeas: ['chickpeas dried', 'Cicer arietinum seeds', 'garbanzo beans'],
   'black-beans': ['black beans', 'black bean seeds', 'frijoles negros'],
   'red-lentils': ['red lentils', 'red lentils dry'],
@@ -61,7 +61,7 @@ export const PHOTO_QUERIES: Record<string, string[]> = {
   'canola-oil': ['cooking oil bottle', 'canola oil'],
   salt: ['salt', 'table salt'],
   // add-ons
-  'wild-sockeye-fillet': ['salmon fillet raw', 'sockeye salmon'],
+  'wild-sockeye-fillet': ['sockeye fillet', 'wild sockeye salmon fillet', 'smoked sockeye'],
   'grass-fed-striploin': ['raw beef steak', 'sirloin steak raw', 'beef striploin'],
   'heritage-pork-belly': ['raw pork belly', 'pork belly skin'],
   'salsa-verde': ['salsa verde', 'italian green sauce', 'herb sauce parsley capers'],
