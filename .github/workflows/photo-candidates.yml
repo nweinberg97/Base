@@ -41,7 +41,7 @@ jobs:
           PHOTO_SET: ${{ github.event.inputs.set || 'main' }}
           PHOTO_SOURCE: ${{ github.event.inputs.source || 'commons' }}
       - name: Shrink large originals for review
-        run: find photo-candidates -name '*.jpg' -size +400k -exec mogrify -auto-orient -resize '1200x1200>' -quality 85 -format jpg {} +
+        run: pip install --quiet pillow && python3 scripts/photos/shrink.py photo-candidates
       - name: Commit candidates to the photo-candidates branch
         run: |
           git config user.name "github-actions[bot]"
