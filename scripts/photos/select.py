@@ -1,6 +1,11 @@
 import json, os, re, html
 from PIL import Image, ImageOps
-CROP={'sockeye-salmon':(0.17,0.24,0.83,0.84),'wild-sockeye-fillet':(0.17,0.24,0.83,0.84)}
+# Square crops for the round bowls, as fractions (left, top, right, bottom) of the
+# original photo, so the food itself fills the circle.
+SQ={'carrots':(0.23,0.40,0.76,0.80),'sweet-corn':(0.25,0.22,0.65,0.75),'dill':(0.30,0.05,0.85,0.78),
+    'greek-yogurt':(0.20,0.10,0.75,0.83),'harissa':(0.08,0.0,0.68,0.80),
+    'sockeye-salmon':(0.15,0.20,0.70,0.92),'wild-sockeye-fillet':(0.15,0.20,0.70,0.92)}
+CROP={'carrots':(0,0.36,1,0.86),'sockeye-salmon':(0.17,0.24,0.83,0.84),'wild-sockeye-fillet':(0.17,0.24,0.83,0.84)}
 S={ # slug: (run, index, alt)
 'chicken-thighs':('pc',0,'Raw boneless, skinless chicken thighs'),
 'chicken-breast':('pc',0,'Two raw boneless chicken breasts on a white plate'),
@@ -21,7 +26,7 @@ S={ # slug: (run, index, alt)
 'quinoa':('pc',1,'Uncooked white quinoa'),
 'potatoes':('pc2',8,'Raw potatoes'),
 'sweet-potatoes':('pc2',0,'A whole raw sweet potato'),
-'carrots':('pc2',9,'A bunch of carrots'),
+'carrots':('pc2',4,'Fresh carrots stacked at a market stall'),
 'beets':('pc2',0,'Beets in a basket'),
 'butternut-squash':('pc',0,'Peeled, cubed butternut squash'),
 'green-cabbage':('pc',0,'Shredded cabbage'),
@@ -58,7 +63,7 @@ S={ # slug: (run, index, alt)
 'cilantro':('pc',0,'A bunch of fresh cilantro'),
 'dill':('pc',2,'A sprig of fresh dill'),
 # add-ons
-'wild-sockeye-fillet':('pc4',3,'Raw wild sockeye salmon, cut into a steak and fillets'),
+'wild-sockeye-fillet':('pc4:sockeye-salmon',3,'Raw wild sockeye salmon, cut into a steak and fillets'),
 'grass-fed-striploin':('pc2',3,'A raw striploin steak'),
 'heritage-pork-belly':('pc',1,'A slab of pork belly'),
 'salsa-verde':('pc3',9,'Salsa verde spooned over grilled fish'),
@@ -79,17 +84,22 @@ S={ # slug: (run, index, alt)
 import sys
 out=sys.argv[1] if len(sys.argv)>1 else 'public/photos'; os.makedirs(out,exist_ok=True)
 credits={}
+def sq_source(slug,orig,im):
+    if slug not in SQ: return im
+    l,t,r,b=SQ[slug]; W,H=orig.size
+    return orig.crop((int(l*W),int(t*H),int(r*W),int(b*H)))
 for slug,(run,i,alt) in S.items():
     folder=slug
     if ':' in run: run,folder=run.split(':')
     meta=[m for m in json.load(open(f'{run}/photo-candidates/{folder}/meta.json')) if m['index']==i][0]
     im=ImageOps.exif_transpose(Image.open(f'{run}/photo-candidates/{folder}/{i}.jpg')).convert('RGB')
+    orig=im
     if slug in CROP:
         l,t,r,b=CROP[slug]; W,H=im.size; im=im.crop((int(l*W),int(t*H),int(r*W),int(b*H)))
     w,h=im.size
     big=im if w<=960 else im.resize((960,round(h*960/w)),Image.LANCZOS)
     big.save(f'{out}/{slug}.webp','WEBP',quality=74,method=6)
-    ImageOps.fit(im,(360,360),Image.LANCZOS).save(f'{out}/{slug}-sq.webp','WEBP',quality=72,method=6)
+    ImageOps.fit(sq_source(slug,orig,im),(360,360),Image.LANCZOS).save(f'{out}/{slug}-sq.webp','WEBP',quality=72,method=6)
     author=html.unescape(meta['author']); author=re.sub(r'\s+',' ',author).strip()
     credits[slug]={'alt':alt,'title':meta['title'].removeprefix('File:'),'author':author[:120],'license':meta['license'],
         'licenseUrl':meta['licenseUrl'] or '','sourceUrl':meta['descriptionUrl'],'width':big.size[0],'height':big.size[1]}

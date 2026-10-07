@@ -200,14 +200,14 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "height": 720
   },
   "carrots": {
-    "alt": "A bunch of carrots",
-    "title": "Vegetable-Carrot-Bundle-wStalks.jpg",
-    "author": "Evan-Amos",
-    "license": "Public domain",
-    "licenseUrl": "",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vegetable-Carrot-Bundle-wStalks.jpg",
+    "alt": "Fresh carrots stacked at a market stall",
+    "title": "Carrot vegetables, April 2023.jpg",
+    "author": "Grace789",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrot_vegetables,_April_2023.jpg",
     "width": 960,
-    "height": 544
+    "height": 637
   },
   "beets": {
     "alt": "Beets in a basket",
@@ -561,13 +561,13 @@ export const PHOTOS: Record<string, PhotoSeed> = {
   },
   "wild-sockeye-fillet": {
     "alt": "Raw wild sockeye salmon, cut into a steak and fillets",
-    "title": "2023 December Lantzville, British Columbia Smoked Sockeye, Bean Medley, Olives & Hard Boiled Egg.jpg",
-    "author": "ArtLink2Fun",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_December_Lantzville,_British_Columbia_Smoked_Sockeye,_Bean_Medley,_Olives_%26_Hard_Boiled_Egg.jpg",
+    "title": "Oncorhynchus nerka (RFEIMG-0186).jpg",
+    "author": "The U.S. Food and Drug Administration",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oncorhynchus_nerka_(RFEIMG-0186).jpg",
     "width": 633,
-    "height": 432
+    "height": 438
   },
   "grass-fed-striploin": {
     "alt": "A raw striploin steak",

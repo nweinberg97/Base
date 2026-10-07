@@ -218,8 +218,9 @@ export function BowlArt({ visual, seed, size = 120, label, className, photo }: {
           ? <image href={withBase(photo.srcSquare)} x={50 - PHOTO_R} y={50 - PHOTO_R} width={PHOTO_R * 2} height={PHOTO_R * 2} preserveAspectRatio="xMidYMid slice" />
           : texture(visual, rng)}
       </g>
-      <circle cx="50" cy="50" r="38.5" fill={`url(#w${id})`} />
-      <path d="M17 38 A 35 35 0 0 1 38 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.9" />
+      {/* Illustrations get the bowl's inner shadow and glaze highlight; photos stay unobstructed. */}
+      {!photo && <circle cx="50" cy="50" r="38.5" fill={`url(#w${id})`} />}
+      {!photo && <path d="M17 38 A 35 35 0 0 1 38 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.9" />}
     </svg>
   );
 }
