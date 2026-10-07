@@ -9,8 +9,12 @@ on:
         description: 'Space-separated slugs (empty = all)'
         required: false
         default: ''
+      source:
+        description: 'commons or openverse'
+        required: false
+        default: 'commons'
       set:
-        description: 'main or prep'
+        description: 'main, prep or dish'
         required: false
         default: 'main'
       per_slug:
@@ -35,6 +39,9 @@ jobs:
         env:
           PER_SLUG: ${{ github.event.inputs.per_slug || '6' }}
           PHOTO_SET: ${{ github.event.inputs.set || 'main' }}
+          PHOTO_SOURCE: ${{ github.event.inputs.source || 'commons' }}
+      - name: Shrink large originals for review
+        run: find photo-candidates -name '*.jpg' -size +400k -exec mogrify -auto-orient -resize '1200x1200>' -quality 85 -format jpg {} +
       - name: Commit candidates to the photo-candidates branch
         run: |
           git config user.name "github-actions[bot]"

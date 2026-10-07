@@ -108,3 +108,30 @@ export const PREP_QUERIES: Record<string, string[]> = {
   'whole-wheat-pasta': ['whole wheat penne', 'wholemeal pasta', 'whole grain spaghetti dry'],
   'salsa-verde': ['bagnet verd', 'salsa verde italiana', 'sauce verte', 'green sauce bowl parsley'],
 };
+
+// Finished dishes for recipe pages: a similar cooked meal, not the raw ingredients.
+// Fetched with PHOTO_SET=dish.
+export const DISH_QUERIES: Record<string, string[]> = {
+  'crispy-chickpea-potato-bowl': ['roasted chickpea potato bowl', 'crispy chickpeas roasted potatoes', 'chickpea buddha bowl'],
+  'green-chicken-curry': ['thai green chicken curry', 'green curry chicken', 'green curry'],
+  'breakfast-hash': ['breakfast hash fried egg', 'potato hash eggs skillet', 'breakfast hash'],
+  'roasted-cauliflower-barley-salad': ['roasted cauliflower grain salad', 'barley salad', 'roasted cauliflower salad'],
+  'lemon-garlic-chicken-sheet-pan': ['sheet pan chicken potatoes lemon', 'roast chicken thighs potatoes lemon', 'lemon garlic chicken traybake'],
+  'chicken-barley-soup': ['chicken barley soup', 'chicken and barley soup', 'chicken vegetable barley soup'],
+  'spiced-carrot-soup': ['carrot soup yogurt', 'spiced carrot soup', 'carrot soup bowl'],
+  'eggs-garlicky-greens-chickpeas': ['eggs greens chickpeas', 'fried egg spinach chickpeas', 'eggs on sauteed greens'],
+  'cauliflower-potato-curry': ['aloo gobi', 'cauliflower potato curry', 'aloo gobhi'],
+  'chicken-barley-bowls-lemon-yogurt': ['chicken grain bowl yogurt sauce', 'chicken barley bowl', 'chicken grain bowl'],
+  'squash-black-bean-chili': ['black bean squash chili', 'vegetarian black bean chili', 'butternut squash chili'],
+  'crispy-tofu-cabbage-stir-fry': ['tofu cabbage stir fry', 'crispy tofu stir fry', 'tofu stir-fry'],
+  'kale-barley-minestrone': ['minestrone kale', 'minestrone soup', 'kale vegetable soup'],
+  'charred-tomato-black-bean-bowls': ['black bean rice bowl tomato', 'black bean bowl', 'black beans rice salsa'],
+  'asparagus-spinach-barley-risotto': ['barley risotto asparagus', 'orzotto', 'asparagus risotto'],
+  'parsnip-cabbage-mushroom-tray': ['roasted parsnips mushrooms', 'roasted root vegetables tray', 'roasted parsnips cabbage'],
+};
+
+// Better-matching searches for Openverse (mostly Flickr), which has far more home-kitchen food photos.
+export const OPENVERSE_EXTRA: Record<string, string[]> = {
+  'salsa-verde': ['salsa verde bowl parsley capers', 'italian salsa verde', 'green herb sauce'],
+  'bell-peppers': ['sliced red peppers', 'red pepper strips'],
+};
