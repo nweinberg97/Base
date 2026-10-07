@@ -1,5 +1,6 @@
 // A tiny client-side router (History API). Pages are prerendered on the server with
 // the same route table, so every URL works without JavaScript.
+import { stripBase, withBase } from './base-path.ts';
 import { createContext, useContext, useEffect, useState, type AnchorHTMLAttributes, type MouseEvent, type ReactNode } from 'react';
 
 interface RouterState { path: string; navigate: (to: string) => void }
@@ -10,15 +11,15 @@ export const normalise = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : 
 export function RouterProvider({ initialPath, children }: { initialPath: string; children: ReactNode }) {
   const [path, setPath] = useState(normalise(initialPath));
   useEffect(() => {
-    const onPop = () => setPath(normalise(window.location.pathname));
+    const onPop = () => setPath(normalise(stripBase(window.location.pathname)));
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
   const navigate = (to: string) => {
-    const url = new URL(to, window.location.href);
+    const url = new URL(withBase(to), window.location.href);
     if (url.origin !== window.location.origin) { window.location.href = to; return; }
     window.history.pushState({}, '', url.pathname + url.search + url.hash);
-    setPath(normalise(url.pathname));
+    setPath(normalise(stripBase(url.pathname)));
     if (url.hash) {
       requestAnimationFrame(() => document.getElementById(url.hash.slice(1))?.scrollIntoView());
     } else {
@@ -42,8 +43,9 @@ export function Link({ href, children, ...rest }: AnchorHTMLAttributes<HTMLAncho
     e.preventDefault();
     navigate(href);
   };
-  const current = href === path || (href !== '/' && path.startsWith(`${href}/`));
-  return <a href={href} aria-current={href === path ? 'page' : undefined} data-active={current || undefined} {...rest} onClick={onClick}>{children}</a>;
+  const bare = href.split(/[?#]/)[0];
+  const current = bare === path || (bare !== '/' && path.startsWith(`${bare}/`));
+  return <a href={withBase(href)} aria-current={bare === path ? 'page' : undefined} data-active={current || undefined} {...rest} onClick={onClick}>{children}</a>;
 }
 
 export type Params = Record<string, string>;

@@ -8,10 +8,17 @@ const TYPES: Record<string, string> = {
   '.svg': 'image/svg+xml', '.png': 'image/png', '.woff': 'font/woff', '.txt': 'text/plain; charset=utf-8',
 };
 
-export function serve(dir: string, port: number) {
+export function serve(dir: string, port: number, basePath = '') {
   const server = createServer((req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
-    let p = normalize(join(dir, decodeURIComponent(url.pathname)));
+    let pathname = decodeURIComponent(url.pathname);
+    if (basePath) {
+      // Mirror GitHub Pages: the site lives under the base path.
+      if (pathname === '/' ) { res.writeHead(302, { location: `${basePath}/` }).end(); return; }
+      if (pathname !== basePath && !pathname.startsWith(`${basePath}/`)) { res.writeHead(404).end('Not found'); return; }
+      pathname = pathname.slice(basePath.length) || '/';
+    }
+    let p = normalize(join(dir, pathname));
     if (!p.startsWith(dir)) { res.writeHead(403).end(); return; }
     if (existsSync(p) && statSync(p).isDirectory()) p = join(p, 'index.html');
     if (!existsSync(p)) {
@@ -23,6 +30,6 @@ export function serve(dir: string, port: number) {
       'cache-control': immutable ? 'public, max-age=31536000, immutable' : 'no-cache' });
     res.end(readFileSync(p));
   });
-  server.listen(port, () => console.log(`Serving ${dir} at http://localhost:${port}`));
+  server.listen(port, () => console.log(`Serving ${dir} at http://localhost:${port}${basePath}/`));
   return server;
 }

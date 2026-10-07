@@ -104,3 +104,18 @@ test('the reserve action is clearly a prototype', async () => {
   const html = strip(prerender(snapshot).render('/base').html);
   assert.match(html, /prototype/i);
 });
+
+test('under a sub-path (GitHub Pages), every internal link carries the prefix', async () => {
+  const prerender = await loadPrerender();
+  const site = prerender(snapshot, '/Base');
+  try {
+    for (const path of ['/', '/base', '/recipes', '/research/ingredients']) {
+      const hrefs = [...site.render(path).html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+      const internal = hrefs.filter((h) => h.startsWith('/'));
+      assert.ok(internal.length > 5, `${path} has internal links`);
+      for (const h of internal) assert.ok(h === '/Base/' || h.startsWith('/Base/'), `${path}: ${h} is missing the base path`);
+    }
+  } finally {
+    prerender(snapshot, '');
+  }
+});

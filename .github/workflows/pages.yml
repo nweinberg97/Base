@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+# Publishes the prerendered site to https://<owner>.github.io/<repo>/.
+# Runs on every push to main, every Monday morning (so "this week's Base" moves on
+# with the calendar), and on demand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '13 14 * * 1'   # Mondays 14:13 UTC (07:13 in Vancouver)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - id: pages
+        uses: actions/configure-pages@v5
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - name: Build for Pages
+        run: npm run build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          BASE_SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
