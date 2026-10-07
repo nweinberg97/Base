@@ -1,32 +1,50 @@
 # Base — Logo
 
-**Base** · *mise en place for everyday cooks*
+**base** · *mise en place for everyday cooks*
 
-![Base stacked lockup](logo/png/base-lockup-stacked-on-ink.png)
+![Base horizontal lockup](logo/png/base-lockup-horizontal-tag-color.png)
 
 ## The idea
 
-A simple bowl — the base of a meal. Empty, because Base gives you the foundation and you decide what goes in it.
+Four prep bowls, seen from above. Mise en place, drawn as simply as it can be.
 
-- **Two plain shapes.** A half-ellipse bowl on a small foot, separated by one gap. Nothing decorative.
-- **Clear hierarchy.** "Base" in Inter Light is the hero; the tagline in Poppins Medium Italic is set narrower than the name.
+- **Four bowls** for the four layers of Base: Foundation, Expression, Community, Pickup.
+- **One is filled:** this week's Base. It sits bottom-left, the bowl at the *base* of the mark, so the whole thing reads as a foundation with room to build on.
+- **It's a system, not just a symbol.** The filled bowl changes colour with the season, so the brand moves through the year the way the weekly basket does.
+
+The round bowls rhyme with the round letters of the wordmark: "base" in lowercase Poppins Medium, tracked −30, converted to outlines. The tagline is Poppins Regular, lowercase, set to the width of the wordmark.
 
 ## Construction
 
-Units are the drawing units in `brand/tools/mark.py`.
+Units: bowl radius = 1.
 
 | Element | Size |
 | --- | --- |
-| Bowl | half-ellipse, 140 wide × 52 deep |
-| Foot | 46 × 9, set 6 below the bowl |
-| Stacked lockup | bowl is 34% of the wordmark's width |
-| Horizontal lockup | bowl is as wide as the capital B is tall, resting on the baseline |
+| Bowls | 4 circles of radius 1 on a 2 × 2 grid |
+| Gap between bowls | 0.30 |
+| Ring thickness (empty bowls) | 0.42 (0.50 in the favicon) |
+| Horizontal lockup | mark height = height of the "b" ascender, sitting on the baseline |
+| Stacked lockup | mark at 1.35× the horizontal size, centred above the wordmark |
 
-Minimum clear space: the height of the foot plus its gap, doubled. Minimum size: mark 20 px, stacked lockup 120 px wide.
+Clear space: one bowl radius on every side. Minimum size: mark 16 px, horizontal lockup 90 px wide.
 
 ## Colour
 
-Black `#000000` and white `#FFFFFF`. The logo is always one colour.
+| Name | Hex | Use |
+| --- | --- | --- |
+| Ink | `#141413` | Logo, text, dark grounds |
+| Paper | `#F4F1EA` | Light grounds, logo on dark |
+| Tomato | `#E2553A` | Signature colour — the filled bowl only |
+
+Seasonal fills for the filled bowl:
+
+| Winter | Spring | Summer | Fall |
+| --- | --- | --- | --- |
+| `#5B7FA6` | `#7FA65B` | `#E2553A` | `#D98A2B` |
+
+![Seasonal app icons](logo/png/base-seasons.png)
+
+Only the filled bowl ever takes colour. Don't recolour the rings or wordmark, add effects, rearrange the bowls, or re-set the wordmark in another typeface.
 
 ## Files
 
@@ -34,15 +52,15 @@ All SVGs are outlined (no font dependency). PNGs are 2× (the mark is exported l
 
 | Asset | Files |
 | --- | --- |
-| Stacked lockup (primary) | `base-lockup-stacked*` |
-| Stacked, no tagline | `base-lockup-stacked-notag*` |
-| Horizontal | `base-lockup-horizontal*` |
+| Horizontal lockup (primary) | `base-lockup-horizontal*` |
 | Horizontal with tagline | `base-lockup-horizontal-tag*` |
-| Wordmark | `base-wordmark*` |
+| Stacked lockup | `base-lockup-stacked*` |
+| Stacked, no tagline | `base-lockup-stacked-notag*` |
 | Mark | `base-mark*` |
-| App icon (1024) | `base-app-icon` |
+| Wordmark | `base-wordmark*` |
+| App icon (1024) | `base-app-icon`, `-color`, `-winter`, `-spring`, `-summer`, `-fall` |
 | Favicon | `base-favicon` |
 
-Suffixes: none = black on transparent · `-inverse` = white on transparent · `-on-ink` = white on black · `-on-paper` = black on white.
+Suffixes: none = ink on transparent · `-inverse` = paper on transparent · `-on-paper` / `-on-ink` = one colour on a ground · `-color` = tomato bowl on paper · `-color-on-ink` = tomato bowl on ink.
 
-To regenerate everything: `python3 brand/tools/build_logo.py` (needs `fonttools`, `matplotlib`, Inter and Poppins installed).
+To regenerate everything: `python3 brand/tools/build_logo.py` (needs `fonttools`, `matplotlib` and Poppins installed).

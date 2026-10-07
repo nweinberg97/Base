@@ -1,21 +1,19 @@
-"""The Base mark: a simple bowl on a small foot -- the base of a meal.
+"""The Base mark: four prep bowls seen from above -- mise en place.
 
-Two plain shapes: a half-ellipse bowl and a foot, separated by one gap T.
+Four bowls for the four layers of Base (Foundation, Expression, Community,
+Pickup). The bottom-left bowl is filled: this week's Base, the foundation the
+rest is built on. Units: bowl radius = 1.
 """
-from geo import Shape, K, rrect
+from geo import Shape, circle, ring
 
-T = 6.0   # gap between bowl and foot
+GAP = 0.30          # space between bowls, as a share of the radius
 
-def half_ellipse(rx, ry, y0):
-    kx, ky = K * rx, K * ry
-    s = Shape().M(-rx, y0).L(rx, y0)
-    s.C((rx, y0 + ky), (kx, y0 + ry), (0, y0 + ry)).C((-kx, y0 + ry), (-rx, y0 + ky), (-rx, y0))
-    return s.Z()
-
-def build():
-    rx, ry = 70.0, 52.0                 # bowl: 140 wide, 52 deep
-    foot_w, foot_h = 46.0, 9.0
-    s = half_ellipse(rx, ry, 0)
-    s.extend(rrect(-foot_w / 2, ry + T, foot_w / 2, ry + T + foot_h, 0, 3))
-    x0, y0, x1, y1 = s.bbox()
-    return s.transform(1, tx=-x0, ty=-y0), x1 - x0, y1 - y0
+def build(ring_t):
+    """Return (rings, filled, width, height). ring_t = ring thickness in radius units."""
+    r, g = 1.0, GAP
+    c = [(r, r), (3 * r + g, r), (3 * r + g, 3 * r + g)]      # top-left, top-right, bottom-right
+    rings = Shape()
+    for x, y in c: rings.extend(ring(x, y, r, ring_t))
+    filled = circle(r, 3 * r + g, r)                         # bottom-left: the base
+    size = 4 * r + g
+    return rings, filled, size, size
