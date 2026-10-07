@@ -97,7 +97,12 @@ Every external datum has a source and one of four states, shown as a badge where
 
 ## Food photos
 
-Ingredients and add-ons are shown with real photos from [Wikimedia Commons](https://commons.wikimedia.org/), under free licences only (public domain, CC0, CC BY, CC BY-SA), each credited to its author with its licence. They were chosen by hand for accuracy from candidates fetched by a GitHub Actions workflow; AI-generated images are excluded. They are representative photos of the ingredient, not of Base's own food, and the site says so. Items with no accurate free photo keep a drawn illustration. See [`scripts/photos/README.md`](scripts/photos/README.md).
+Every food photo is freely licensed (public domain, CC0, CC BY or CC BY-SA), comes from Wikimedia Commons or Openverse (Flickr), and is credited to its author. Each one was chosen by hand for accuracy, and AI-generated images are excluded.
+
+- Ingredients are shown prepped the way they come in a Base: cooked chickpeas, diced onion, carrot sticks and so on.
+- Recipes show a similar finished dish.
+
+None are photos of Base's own food, and the site says so. See [`scripts/photos/README.md`](scripts/photos/README.md).
 
 ## Containers
 

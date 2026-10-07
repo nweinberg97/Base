@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getAddOnById, getBasketsForRecipe, getCurrentBase, getIngredientById, getRecipeBySlug, getRecipes, recipeFitsBasket } from '../data/api.ts';
 import { RecipeCard, AddOnCard } from '../components/cards.tsx';
 import { BowlArt } from '../components/BowlArt.tsx';
+import { FoodPhoto } from '../components/Photo.tsx';
 import { EmptyState, Tabs } from '../components/ui.tsx';
 import { StatusBadge } from '../components/data.tsx';
 import { Link } from '../lib/router.tsx';
@@ -55,9 +56,11 @@ export function RecipeDetail({ slug }: { slug: string }) {
   return (
     <article className="page recipe-page">
       <header className="recipe-head">
-        <div className="recipe-head-bowls" aria-hidden="true">
-          {main.map((g, i) => g && <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${r.slug}-${i}`} size={150} photo={g.photo} />)}
-        </div>
+        {r.photo
+          ? <FoodPhoto photo={r.photo} eager className="recipe-photo" caption="A similar dish, for illustration." />
+          : <div className="recipe-head-bowls" aria-hidden="true">
+              {main.map((g, i) => g && <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${r.slug}-${i}`} size={150} photo={g.photo} />)}
+            </div>}
         <div>
           <h1>{r.name}</h1>
           <p className="recipe-card-by">by {r.creatorName}{r.creatorIsDemo && <span className="muted"> (demo creator)</span>}</p>

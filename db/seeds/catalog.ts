@@ -69,6 +69,12 @@ export const SOURCES: SourceSeed[] = [
     retrieved: '2026-10-07',
     description: 'Freely licensed photographs (public domain, CC0, CC BY, CC BY-SA) chosen by hand to show each ingredient or add-on. Representative photos, not pictures of Base’s own food; each is credited to its author with its licence.',
   },
+  {
+    slug: 'openverse-photos', name: 'Openverse (photos from Flickr and others)',
+    url: 'https://openverse.org/', type: 'community', region: 'General',
+    retrieved: '2026-10-07',
+    description: 'Freely licensed photographs (CC0, public domain, CC BY, CC BY-SA) found through Openverse, mostly from Flickr: prepped ingredients and finished dishes similar to Base recipes. Representative photos, not pictures of Base’s own food or of the exact recipe; each is credited to its author with its licence.',
+  },
 ];
 
 // ---------------------------------------------------------------------------

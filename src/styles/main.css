@@ -672,3 +672,5 @@ fieldset.modes legend { padding: 0; float: left; width: 100%; }
 .photo-credits li { break-inside: avoid; display: grid; grid-template-columns: 48px 1fr; gap: var(--s3); align-items: center; padding: var(--s2) 0; border-bottom: 1px solid var(--line); }
 .photo-credits img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
 .photo-credits strong { display: block; font-weight: 600; }
+.recipe-card-photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); background: var(--surface); }
+.recipe-head:has(.recipe-photo) { align-items: start; }

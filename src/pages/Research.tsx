@@ -392,12 +392,14 @@ export function ResearchData() {
 
       <section className="section" aria-labelledby="photos" id="photo-credits">
         <h2 id="photos">Photo credits</h2>
-        <p className="section-lede">The food photos on this site come from Wikimedia Commons under free licences (public domain, CC0, CC BY
-          and CC BY-SA). They show what each ingredient or add-on looks like; they are not photos of Base’s own food. Each one is credited to
-          its author below, with a link to the original and its licence.</p>
+        <p className="section-lede">The food photos on this site come from Wikimedia Commons and Openverse (mostly Flickr), under free licences
+          only: public domain, CC0, CC BY and CC BY-SA. Ingredient photos show the food prepped the way it comes in a Base; recipe photos show a
+          similar finished dish. None are photos of Base’s own food or of the exact recipe. Each is credited to its author below, with a link
+          to the original and its licence.</p>
         <ul className="plain photo-credits">
           {[...s.ingredients.map((i) => ({ name: i.name, href: `/ingredients/${i.slug}`, photo: i.photo })),
-            ...s.addOns.map((a) => ({ name: `${a.name} (add-on)`, href: '/addons', photo: a.photo }))]
+            ...s.addOns.map((a) => ({ name: `${a.name} (add-on)`, href: '/addons', photo: a.photo })),
+            ...s.recipes.map((r) => ({ name: `${r.name} (recipe)`, href: `/recipes/${r.slug}`, photo: r.photo }))]
             .filter((x) => x.photo).sort((a, b) => a.name.localeCompare(b.name))
             .map((x) => (
               <li key={x.name}>

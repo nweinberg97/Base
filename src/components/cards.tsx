@@ -64,9 +64,11 @@ export function RecipeCard({ recipe, used, basketName }: { recipe: Recipe; used?
   const optionalAddOns = recipe.lines.filter((l) => l.addOnId).length;
   return (
     <article className="recipe-card">
-      <div className="recipe-card-bowls" aria-hidden="true">
-        {main.map((g, i) => <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${recipe.slug}-${i}`} size={92} photo={g.photo} />)}
-      </div>
+      {recipe.photo
+        ? <PhotoThumb photo={recipe.photo} className="recipe-card-photo" />
+        : <div className="recipe-card-bowls" aria-hidden="true">
+            {main.map((g, i) => <BowlArt key={g.slug} visual={g.visual} seed={`${g.slug}-${recipe.slug}-${i}`} size={92} photo={g.photo} />)}
+          </div>}
       <div className="recipe-card-text">
         <h3><Link href={`/recipes/${recipe.slug}`}>{recipe.name}</Link></h3>
         <p className="recipe-card-by">by {recipe.creatorName}{recipe.creatorIsDemo && <span className="muted"> (demo creator)</span>}</p>

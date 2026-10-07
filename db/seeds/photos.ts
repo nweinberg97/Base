@@ -1,4 +1,4 @@
-// Photos of each ingredient and add-on, from Wikimedia Commons under free licences
+// Photos of each ingredient, add-on and recipe, from Wikimedia Commons and Openverse (Flickr) under free licences
 // (public domain, CC0, CC BY, CC BY-SA). Chosen by hand for accuracy from candidates
 // fetched by scripts/photos/candidates.ts; files are in public/photos/.
 // They are representative photos, not pictures of Base's own food.
@@ -6,9 +6,198 @@
 export interface PhotoSeed {
   alt: string; title: string; author: string; license: string; licenseUrl: string; sourceUrl: string;
   width: number; height: number;
+  /** Where the photo was found: Wikimedia Commons, Flickr, rawpixel… */
+  via: string;
 }
 
 export const PHOTOS: Record<string, PhotoSeed> = {
+  "asparagus-spinach-barley-risotto": {
+    "alt": "Risotto with asparagus",
+    "title": "Asparagus Risotto",
+    "author": "Katrin Gilger",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/26242865@N04/4562450879",
+    "via": "Flickr",
+    "width": 960,
+    "height": 641
+  },
+  "breakfast-hash": {
+    "alt": "A fried egg on a vegetable hash",
+    "title": "Mmm... Spam hash with fried egg",
+    "author": "jeffreyw",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/7927684@N03/7880929132",
+    "via": "Flickr",
+    "width": 960,
+    "height": 636
+  },
+  "cauliflower-potato-curry": {
+    "alt": "Cauliflower and potato curry (aloo gobi)",
+    "title": "Aloo Gobi at Two Wolves Community Cantina, Chippendale: Sydney Food Blog Review",
+    "author": "insatiablemunch",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/48041244@N05/21883116303",
+    "via": "Flickr",
+    "width": 683,
+    "height": 1024
+  },
+  "charred-tomato-black-bean-bowls": {
+    "alt": "A bowl of rice, black beans and fresh tomato",
+    "title": "Giant burrito!",
+    "author": "goblinbox_(queen_of_ad_hoc_bento)",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/25977089@N00/5347841613",
+    "via": "Flickr",
+    "width": 960,
+    "height": 720
+  },
+  "chicken-barley-soup": {
+    "alt": "Barley soup with meat and a spoon of sour cream",
+    "title": "Vegetable pork barley soup with chicken livers and sour cream, by Silar 2010 I",
+    "author": "Silar",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=11823652",
+    "via": "Wikimedia Commons",
+    "width": 640,
+    "height": 480
+  },
+  "crispy-chickpea-potato-bowl": {
+    "alt": "A bowl of crispy roasted chickpeas",
+    "title": "Chickpea Buddha Bowls",
+    "author": "jules:stonesoup",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/58367355@N00/45091823365",
+    "via": "Flickr",
+    "width": 960,
+    "height": 639
+  },
+  "green-chicken-curry": {
+    "alt": "Green chicken curry with basil",
+    "title": "thai green chicken curry",
+    "author": "jules:stonesoup",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/58367355@N00/12830275973",
+    "via": "Flickr",
+    "width": 960,
+    "height": 639
+  },
+  "kale-barley-minestrone": {
+    "alt": "A bowl of minestrone",
+    "title": "Cannellini, Mushroom, Leek, Celery, Carrot, Zucchini, Pasta Minestrone Soup - close - photo by Julia",
+    "author": "avlxyz",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/10559879@N00/4947558897",
+    "via": "Flickr",
+    "width": 960,
+    "height": 643
+  },
+  "roasted-cauliflower-barley-salad": {
+    "alt": "Barley salad with roasted cauliflower and greens",
+    "title": "Roasted cauliflower and herbed barley salad",
+    "author": "veritatem",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/66722164@N00/20582519053",
+    "via": "Flickr",
+    "width": 960,
+    "height": 960
+  },
+  "spiced-carrot-soup": {
+    "alt": "Carrot soup with a spoon of yogurt",
+    "title": "Carrot soup with Greek yogurt",
+    "author": "stu_spivack",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=44943988",
+    "via": "Wikimedia Commons",
+    "width": 960,
+    "height": 637
+  },
+  "squash-black-bean-chili": {
+    "alt": "A bowl of black bean chili",
+    "title": "Solar cooked vegetarian chili",
+    "author": "EBKauai",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/13470115@N08/6734016371",
+    "via": "Flickr",
+    "width": 960,
+    "height": 540
+  },
+  "chicken-barley-bowls-lemon-yogurt": {
+    "alt": "A bowl of roast chicken with vegetables",
+    "title": "Liat Portal for Foodie Disorder - Roasted chicken with cauliflower broccoli potatoes rice and salad",
+    "author": "HaJunkiyada",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=183820849",
+    "via": "Wikimedia Commons",
+    "width": 900,
+    "height": 1200
+  },
+  "crispy-tofu-cabbage-stir-fry": {
+    "alt": "Tofu and cabbage stir-fry",
+    "title": "Tomyum Vegetarian Fried Noodles - Mint Thai AUD9",
+    "author": "avlxyz",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/10559879@N00/3517178007",
+    "via": "Flickr",
+    "width": 960,
+    "height": 643
+  },
+  "eggs-garlicky-greens-chickpeas": {
+    "alt": "Eggs cooked with greens",
+    "title": "Scrambled eggs with green beans, pesto, and cheddar cheese",
+    "author": "Laurel Fan",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/18295242@N00/7996344623",
+    "via": "Flickr",
+    "width": 765,
+    "height": 1024
+  },
+  "lemon-garlic-chicken-sheet-pan": {
+    "alt": "Roast chicken legs",
+    "title": "Roasted chicken thighs",
+    "author": "Neeta Lind",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/71132408@N00/11348618374",
+    "via": "Flickr",
+    "width": 960,
+    "height": 720
+  },
+  "parsnip-cabbage-mushroom-tray": {
+    "alt": "Roasted parsnips and potatoes",
+    "title": "Parsnips",
+    "author": "whatleydude",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/85318305@N00/6578192419",
+    "via": "Flickr",
+    "width": 960,
+    "height": 540
+  },
+  "whole-wheat-pasta": {
+    "alt": "Whole wheat penne",
+    "title": "Whole wheat penne, cooked and uncooked",
+    "author": "Ragesoss",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=3756604",
+    "via": "Wikimedia Commons",
+    "width": 960,
+    "height": 642
+  },
   "chicken-thighs": {
     "alt": "Raw boneless, skinless chicken thighs",
     "title": "Raw chicken thighs.jpg",
@@ -16,6 +205,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raw_chicken_thighs.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -26,6 +216,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raw_chicken_slices.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -36,6 +227,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brown-eggs.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -46,6 +238,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ground_turkey_(4515834437).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -56,6 +249,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:HK_food_ingredient_red_meat_frozen_pork_chop_raw_butt_steak_October_2021_SS2_018.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
@@ -66,6 +260,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hakket-oksekoed.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 689
   },
@@ -76,6 +271,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Japanese_tofu_001.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -86,18 +282,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oncorhynchus_nerka_(RFEIMG-0186).jpg",
+    "via": "Wikimedia Commons",
     "width": 633,
     "height": 438
   },
   "chickpeas": {
-    "alt": "Chickpeas",
-    "title": "Soaked and dried chickpeas.jpg",
-    "author": "Tiia Monto",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Soaked_and_dried_chickpeas.jpg",
+    "alt": "Cooked chickpeas",
+    "title": "Garbanzos con allioli, gastronomía rural, comarca Maestrazgo.jpg",
+    "author": "Juan Emilio Prades Bel",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Garbanzos_con_allioli,_gastronom%C3%ADa_rural,_comarca_Maestrazgo.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
-    "height": 659
+    "height": 720
   },
   "black-beans": {
     "alt": "Dry black turtle beans",
@@ -106,6 +304,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Black_Turtle_Bean.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -116,18 +315,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Split_Red_Lentil.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
   "green-lentils": {
-    "alt": "Dry green lentils",
-    "title": "Green lentils.jpg",
-    "author": "Tiia Monto",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Green_lentils.jpg",
+    "alt": "Cooked lentils in a bowl",
+    "title": "14. cooked lentils",
+    "author": "jules:stonesoup",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/58367355@N00/6858972746",
+    "via": "Flickr",
     "width": 960,
-    "height": 844
+    "height": 672
   },
   "navy-beans": {
     "alt": "Small white beans in a colander",
@@ -136,6 +337,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Porotos_alubia_blancos_escurridos_en_colador_de_acero_inoxidable.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 759
   },
@@ -146,6 +348,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Germinated_brown_rice_-_long_grain.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
@@ -156,6 +359,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rolled_oats_2.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -166,6 +370,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.5",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kasza_jeczmienna_02.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -176,58 +381,64 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quinoa_closeup.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 643
   },
   "potatoes": {
-    "alt": "Raw potatoes",
-    "title": "A set of potatoes in market Danilovsky Market, Moscow, Russia (38901410690).jpg",
-    "author": "Andrey Filippov 安德烈 from Moscow, Russia",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_set_of_potatoes_in_market_Danilovsky_Market,_Moscow,_Russia_(38901410690).jpg",
+    "alt": "Cut potatoes",
+    "title": "Cut Potatoes.jpg",
+    "author": "Alabama Extension",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cut_Potatoes.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
-    "height": 640
+    "height": 594
   },
   "sweet-potatoes": {
-    "alt": "A whole raw sweet potato",
-    "title": "Sweet potato sprouting slips.jpg",
-    "author": "Geo Lightspeed7",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sweet_potato_sprouting_slips.jpg",
+    "alt": "Peeled sweet potatoes",
+    "title": "sweet potatoes",
+    "author": "Phil Denton",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/37475039@N04/4261105782",
+    "via": "Flickr",
+    "width": 768,
+    "height": 1024
+  },
+  "carrots": {
+    "alt": "Peeled carrot sticks",
+    "title": "lactofermented carrot sticks",
+    "author": "HealthHomeHappy.com",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/39794839@N03/4790925848",
+    "via": "Flickr",
     "width": 960,
     "height": 720
   },
-  "carrots": {
-    "alt": "Fresh carrots stacked at a market stall",
-    "title": "Carrot vegetables, April 2023.jpg",
-    "author": "Grace789",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrot_vegetables,_April_2023.jpg",
-    "width": 960,
-    "height": 637
-  },
   "beets": {
-    "alt": "Beets in a basket",
-    "title": "Beetroots in a basket.jpg",
-    "author": "W.carter",
+    "alt": "Cooked, peeled beets",
+    "title": "Liat Portal for Foodie Disorder - Cooked Boiled Beetroot.jpg",
+    "author": "HaJunkiyada",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Beetroots_in_a_basket.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Cooked_Boiled_Beetroot.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
-    "height": 640
+    "height": 1280
   },
   "butternut-squash": {
     "alt": "Peeled, cubed butternut squash",
-    "title": "20111012-FNCS-LSC-0012 - Flickr - USDAgov.jpg",
-    "author": "U.S. Department of Agriculture",
-    "license": "Public domain",
-    "licenseUrl": "",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:20111012-FNCS-LSC-0012_-_Flickr_-_USDAgov.jpg",
+    "title": "Cubed butternut squash",
+    "author": "trenttsd",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/84335369@N00/6153009721",
+    "via": "Flickr",
     "width": 960,
-    "height": 638
+    "height": 720
   },
   "green-cabbage": {
     "alt": "Shredded cabbage",
@@ -236,6 +447,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shredded_Cabbage_(Side_Dish)_in_Taiwan.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1275
   },
@@ -246,6 +458,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cauliflower_florets.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -256,28 +469,31 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Broccoli_florets_on_ice.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
   "brussels-sprouts": {
-    "alt": "Halved Brussels sprouts on a baking tray",
-    "title": "Roasted Brussels sprouts - December 2023 - Sarah Stierch 01.jpg",
-    "author": "Missvain",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roasted_Brussels_sprouts_-_December_2023_-_Sarah_Stierch_01.jpg",
-    "width": 960,
-    "height": 1280
-  },
-  "zucchini": {
-    "alt": "A crate of zucchini",
-    "title": "Zucchini Erdverschmutzung-Josef Schlaghecken.jpg",
-    "author": "Schlaghecken Josef",
+    "alt": "Washed Brussels sprouts in a colander",
+    "title": "-2020-01-01 Brussel sprouts, Trimingham, Norfolk.JPG",
+    "author": "Kolforn (Kolforn) I'd appreciate if you could mail me (Kolforn@gmail.com) if you want to use this picture out of the Wik",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zucchini_Erdverschmutzung-Josef_Schlaghecken.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:-2020-01-01_Brussel_sprouts,_Trimingham,_Norfolk.JPG",
+    "via": "Wikimedia Commons",
     "width": 960,
-    "height": 1294
+    "height": 720
+  },
+  "zucchini": {
+    "alt": "Sliced zucchini",
+    "title": "Sliced zucchini",
+    "author": "WordRidden",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/97844767@N00/4820849568",
+    "via": "Flickr",
+    "width": 960,
+    "height": 720
   },
   "tomatoes": {
     "alt": "Ripe red tomatoes on the vine",
@@ -286,6 +502,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tomato_je.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 798
   },
@@ -296,6 +513,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_bell_pepper.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -306,6 +524,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_Corn_on_the_Cob_with_husk_(27000745034).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -316,6 +535,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Macro_of_Fresh_Green_Beans_Buncis.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -326,6 +546,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peas_(484346231).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -336,18 +557,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Radish_3371103037_4ab07db0bf_o.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
   "cremini-mushrooms": {
-    "alt": "A whole cremini mushroom",
-    "title": "2016-01 Agaricus bisporus 07.jpg",
-    "author": "0x010C",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016-01_Agaricus_bisporus_07.jpg",
+    "alt": "Sliced mushrooms",
+    "title": "Sliced mushrooms",
+    "author": "kewl",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/58411470@N00/7153397899",
+    "via": "Flickr",
     "width": 960,
-    "height": 640
+    "height": 636
   },
   "asparagus": {
     "alt": "Green asparagus spears",
@@ -356,18 +579,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fresh_asparagus_spears_on_plate.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 624
   },
   "kale": {
-    "alt": "A bunch of curly kale",
-    "title": "Kale-Bundle.jpg",
-    "author": "Evan-Amos",
-    "license": "CC0",
-    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kale-Bundle.jpg",
+    "alt": "Washed, chopped kale",
+    "title": "Chopped Kale",
+    "author": "Shoshanah",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/68737200@N00/8982664552",
+    "via": "Flickr",
     "width": 960,
-    "height": 608
+    "height": 640
   },
   "spinach": {
     "alt": "Fresh spinach leaves",
@@ -376,18 +601,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spinach_leaves.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 708
   },
   "swiss-chard": {
-    "alt": "Bunches of rainbow Swiss chard",
-    "title": "Rainbow chard for sale at the Campbell farmers market 2.jpg",
-    "author": "Grendelkhan",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rainbow_chard_for_sale_at_the_Campbell_farmers_market_2.jpg",
+    "alt": "Washed Swiss chard leaves",
+    "title": "SwissChardLeaves",
+    "author": "YoAmes",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/24013072@N05/4293773119",
+    "via": "Flickr",
     "width": 960,
-    "height": 1280
+    "height": 720
   },
   "romaine": {
     "alt": "A head of romaine lettuce",
@@ -396,18 +623,20 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Romaine_lettuce.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1133
   },
   "yellow-onions": {
-    "alt": "A yellow onion",
-    "title": "Onion on White.JPG",
-    "author": "Colin",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Onion_on_White.JPG",
+    "alt": "Diced onion",
+    "title": "diced onions - set aside",
+    "author": "austinevan",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/19762676@N00/4034511720",
+    "via": "Flickr",
     "width": 960,
-    "height": 960
+    "height": 720
   },
   "garlic": {
     "alt": "Peeled garlic cloves",
@@ -416,28 +645,31 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peeled_garlic_cloves.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 960
   },
   "leeks": {
-    "alt": "Two leeks",
-    "title": "Prei met knobbel (Leek).jpg",
-    "author": "Rasbak",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prei_met_knobbel_(Leek).jpg",
+    "alt": "Sliced leeks",
+    "title": "Free sliced leek close cutting",
+    "author": "rawpixel.com",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourceUrl": "https://www.rawpixel.com/image/5925519/photo-image-public-domain-green-food",
+    "via": "rawpixel",
     "width": 960,
-    "height": 1574
+    "height": 640
   },
   "ginger": {
-    "alt": "Fresh ginger root",
-    "title": "Liat Portal for Foodie Disorder - Fresh ginger root from San Francisco farmers market.jpg",
-    "author": "HaJunkiyada",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Fresh_ginger_root_from_San_Francisco_farmers_market.jpg",
+    "alt": "Peeled ginger",
+    "title": "Peeled Ginger",
+    "author": "Veganbaking.net",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/31104779@N02/6314755173",
+    "via": "Flickr",
     "width": 960,
-    "height": 1280
+    "height": 640
   },
   "apples": {
     "alt": "A red apple",
@@ -446,6 +678,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_Apple.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 870
   },
@@ -456,6 +689,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Four_pears.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 451
   },
@@ -466,6 +700,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dish_of_blueberries.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 721
   },
@@ -476,6 +711,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.5",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lemon.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 678
   },
@@ -486,6 +722,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yoghurt_in_bowl.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -496,6 +733,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Somerset-Cheddar.jpg",
+    "via": "Wikimedia Commons",
     "width": 879,
     "height": 628
   },
@@ -506,6 +744,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.5",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Feta_Cheese.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 768
   },
@@ -516,6 +755,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tomato_passata.jpg",
+    "via": "Wikimedia Commons",
     "width": 930,
     "height": 638
   },
@@ -526,6 +766,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chanterelle_Mushrooms_in_Shantullich_Wood_-_geograph.org.uk_-_6952952.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -536,6 +777,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parsley_Leaves.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
@@ -546,6 +788,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coriander_Leaves.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -556,6 +799,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fresh_Dill_Leaves.JPG",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -566,6 +810,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oncorhynchus_nerka_(RFEIMG-0186).jpg",
+    "via": "Wikimedia Commons",
     "width": 633,
     "height": 438
   },
@@ -576,6 +821,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raw_beef_steak,_2011.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -586,16 +832,18 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Freshly_prepared_raw_pork_belly_with_red_onions_and_chili_peppers.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 639
   },
   "salsa-verde": {
-    "alt": "Salsa verde spooned over grilled fish",
-    "title": "Bigeye tuna salsa verde.jpg",
-    "author": "Quinn Dombrowski",
-    "license": "CC BY-SA 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bigeye_tuna_salsa_verde.jpg",
+    "alt": "A bowl of Italian salsa verde",
+    "title": "Italian Salsa Verde",
+    "author": "TheDeliciousLife",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/33715728@N05/4123316559",
+    "via": "Flickr",
     "width": 960,
     "height": 720
   },
@@ -606,6 +854,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Falafels_with_tarator.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -616,6 +865,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chili_crisp_(cropped).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 960
   },
@@ -626,6 +876,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Garam_Masala_1.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
@@ -636,6 +887,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Miso_tahini_dressing_(43129544912).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 640
   },
@@ -646,6 +898,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harissa_in_a_jar_(vertical).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -656,6 +909,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:2007-07-14_Cantharellus_cibarius.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -666,6 +920,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:2020-03-30_05_45_55_Three_cuts_of_Giant-brand_Cracker_Cuts_of_Vermont_Sharp_Cheddar_Cheese_in_the_Dulles_section_of_Sterling,_Loudoun_County,_Virginia.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -676,6 +931,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "Public domain",
     "licenseUrl": "",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Greek_feta.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -686,6 +942,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sourdough_Bread_Loaf.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -696,6 +953,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apple_galette_(3926990412).jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 823
   },
@@ -706,6 +964,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blueberry_crumble_from_Milang_Bakery,_South_Australia.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 720
   },
@@ -716,6 +975,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rabarberkompot.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 1280
   },
@@ -726,6 +986,7 @@ export const PHOTOS: Record<string, PhotoSeed> = {
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Righteously_Raw_chocolate.jpg",
+    "via": "Wikimedia Commons",
     "width": 960,
     "height": 671
   }

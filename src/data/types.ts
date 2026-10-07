@@ -126,6 +126,7 @@ export interface Photo {
   license: string;
   licenseUrl: string | null;
   sourceUrl: string;
+  via: string;
   sourceId: number;
 }
 
@@ -170,6 +171,8 @@ export interface Recipe {
   verificationStatus: VerificationStatus;
   lines: RecipeLine[];
   steps: string[];
+  /** A similar finished dish (not the exact recipe), credited. */
+  photo: Photo | null;
 }
 
 export interface Container {

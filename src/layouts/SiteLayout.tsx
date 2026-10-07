@@ -81,7 +81,7 @@ function Footer() {
         </nav>
         <p className="footer-note">
           Base is a prototype. Nothing on this site can be bought, prices and suppliers are estimates or demos, and pickup
-          locations are placeholders. Food photos are representative images from Wikimedia Commons, credited on the
+          locations are placeholders. Food photos are freely licensed representative images, credited on the
           data page. This week is the {SEASON_LABEL[current.basket.season].toLowerCase()} Base for the week of {current.weekLabel}.
         </p>
       </div>

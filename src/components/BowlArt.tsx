@@ -1,5 +1,5 @@
 // A prep bowl seen from above, filled with an ingredient. When the ingredient has a
-// credited photo (Wikimedia Commons, see db/seeds/photos.ts) the photo fills the bowl;
+// credited photo (see db/seeds/photos.ts) the photo fills the bowl;
 // otherwise it is drawn from the ingredient's own data (colour, accent, texture) with
 // seeded randomness, so chickpeas always look like the same chickpeas.
 import type { Photo } from '../data/types.ts';

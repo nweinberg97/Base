@@ -41,6 +41,7 @@ export function exportSnapshot(db: Db, opts: { region?: string; weekOf: string; 
   const toPhoto = (r: Row | undefined): Photo | null => (r ? {
     src: `/${r.file}`, srcSquare: `/${r.file_square}`, width: r.width, height: r.height, alt: r.alt, title: r.title,
     author: r.author, license: r.license, licenseUrl: r.license_url, sourceUrl: r.source_url, sourceId: r.source_id,
+    via: /wikimedia\.org/.test(r.source_url) ? 'Wikimedia Commons' : /flickr\.com/.test(r.source_url) ? 'Flickr' : /rawpixel\.com/.test(r.source_url) ? 'rawpixel' : 'Openverse',
   } : null);
 
   const ingredients: Ingredient[] = all<Row>(db, 'SELECT * FROM ingredients ORDER BY name').map((i) => {
@@ -121,6 +122,7 @@ export function exportSnapshot(db: Db, opts: { region?: string; weekOf: string; 
       ingredientId: x.ingredient_id, addOnId: x.add_on_id, quantity: x.quantity, unit: x.unit, optional: x.is_optional === 1, note: x.note,
     })),
     steps: steps.filter((x) => x.recipe_id === r.id).map((x) => x.text),
+    photo: toPhoto(photoRows.find((x) => x.recipe_id === r.id)),
   }));
 
   const containers: Container[] = all<Row>(db, 'SELECT * FROM containers ORDER BY size_ml').map((c) => ({

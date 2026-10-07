@@ -136,16 +136,18 @@ export function seed(db: Db): Record<string, number> {
       for (const [slug, note] of r.addOns ?? []) insRI.run(rid, null, id('add_ons', slug), null, null, 1, note);
     }
 
-    // photos: each slug is an ingredient or an add-on
-    const insPhoto = db.prepare(`INSERT INTO photos (ingredient_id, add_on_id, source_id, file, file_square, width, height, alt, title,
-      author, license, license_url, source_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    // photos: each slug is an ingredient, an add-on or a recipe (recipes are seeded above)
+    const insPhoto = db.prepare(`INSERT INTO photos (ingredient_id, add_on_id, recipe_id, source_id, file, file_square, width, height, alt,
+      title, author, license, license_url, source_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     const maybeId = (table: string, slug: string) =>
       (db.prepare(`SELECT id FROM ${table} WHERE slug = ?`).get(slug) as { id: number } | undefined)?.id ?? null;
     for (const [slug, p] of Object.entries(PHOTOS)) {
       const ing = maybeId('ingredients', slug);
       const add = ing === null ? maybeId('add_ons', slug) : null;
-      if (ing === null && add === null) throw new Error(`Photo for unknown ingredient or add-on "${slug}"`);
-      insPhoto.run(ing, add, SRC['wikimedia-commons-photos'], `photos/${slug}.webp`, `photos/${slug}-sq.webp`, p.width, p.height,
+      const rec = ing === null && add === null ? maybeId('recipes', slug) : null;
+      if (ing === null && add === null && rec === null) throw new Error(`Photo for unknown ingredient, add-on or recipe "${slug}"`);
+      const src = p.via === 'Wikimedia Commons' ? SRC['wikimedia-commons-photos'] : SRC['openverse-photos'];
+      insPhoto.run(ing, add, rec, src, `photos/${slug}.webp`, `photos/${slug}-sq.webp`, p.width, p.height,
         p.alt, p.title, p.author, p.license, p.licenseUrl || null, p.sourceUrl);
     }
 
