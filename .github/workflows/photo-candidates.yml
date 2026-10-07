@@ -9,6 +9,10 @@ on:
         description: 'Space-separated slugs (empty = all)'
         required: false
         default: ''
+      per_slug:
+        description: 'Candidates per item'
+        required: false
+        default: '6'
   push:
     branches: [photo-candidates-request]
 
@@ -24,6 +28,8 @@ jobs:
         with:
           node-version: '22.x'
       - run: node scripts/photos/candidates.ts ${{ github.event.inputs.slugs }}
+        env:
+          PER_SLUG: ${{ github.event.inputs.per_slug || '6' }}
       - name: Commit candidates to the photo-candidates branch
         run: |
           git config user.name "github-actions[bot]"

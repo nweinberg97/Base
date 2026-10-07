@@ -9,7 +9,7 @@ import { PHOTO_QUERIES } from './queries.ts';
 const OUT = resolve(import.meta.dirname, '../../photo-candidates');
 const UA = 'BasePrototype/0.1 (https://github.com/nweinberg97/Base; photo sourcing)';
 const API = 'https://commons.wikimedia.org/w/api.php';
-const PER_SLUG = 6;
+const PER_SLUG = Number(process.env.PER_SLUG) || 6;
 const ALLOWED = /^(cc0|public domain|pd|cc by(-sa)? \d(\.\d)?)/i;
 
 interface Candidate {
