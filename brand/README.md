@@ -1,33 +1,32 @@
 # Base — Logo
 
-**base** · *mise en place for everyday cooks*
+**Base** · *mise en place for everyday cooks*
 
 ![Base stacked lockup](logo/png/base-lockup-stacked-on-paper.png)
 
 ## The idea
 
-Three prepared ingredients stacked above a bowl. The mark is built from three primitives only — circles, a shallow half-ellipse and a hairline bar — so it stays crisp from a 16 px favicon to a storefront sign.
+A pot — the base of food — with four bubbles rising out of it. It refines the original sketch rather than replacing it: same pot, same handles, same bubbling ingredients, drawn with consistent geometry.
 
-- **Three dots in a pyramid** are the mise en place: ingredients prepped and ready. Two on the bottom, one on top — a *base* you build on.
-- **The hairline rim** reaches past the bowl as handles, carrying over the cookware from the original sketch with far less weight.
-- **The shallow bowl** gives the mark a calm, wide footprint that sits comfortably beside the wordmark.
+- **Four bubbles** are the four corners of a strong base: one low in the centre, two lifting to either side, one on top. The rising arrangement keeps the sense of food bubbling up out of the pot.
+- **The lid band** floats just above the pot on a single gap unit, as in the original.
+- **The handles** are open C-shapes, each drawn as one clean path.
 
-The wordmark is lowercase Inter Display Medium, tracked −45 for a tight, confident set, converted to outlines. The tagline is Inter Display Regular, lowercase, sized to span the wordmark in the stacked lockup.
+The wordmark is "Base" in Poppins Light, converted to outlines — light and quiet like the original. The tagline is Poppins Medium Italic.
 
 ## Construction
 
-Everything is drawn on a single unit **g**:
+Everything is drawn on one gap unit **g** (0.85 of a grid unit):
 
-| Element | Size |
+| Element | Size (grid units) |
 | --- | --- |
-| Rim thickness | 1.1g (fully rounded ends) |
-| Rim overhang past the bowl (each side) | 2.4g |
-| Gap: dots → rim, rim → bowl | 1.5g |
-| Dot radius | 2.4g |
-| Space between dots | 1.2g |
-| Bowl | 22g wide × 8.5g deep |
+| Pot body | 17 wide × 10.4 deep, bottom corner radius 4.6 |
+| Lid band | 1.5 thick, overhangs the pot by 0.7 each side, one gap above the pot |
+| Handles | 3.0 out × 3.4 tall, 1.15 stroke |
+| Bubbles | radius 1.95, 0.6 apart; sides lifted 1.1 above the centre bubble |
+| Gap between every part | g |
 
-Minimum clear space around any lockup: one dot diameter (4.8g). Minimum size: mark 16 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
+Minimum clear space around any lockup: one bubble diameter. Minimum size: mark 16 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
 
 ## Colour
 
