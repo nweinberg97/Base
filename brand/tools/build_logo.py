@@ -69,7 +69,7 @@ themed("base-wordmark", lambda c: [(WORD.transform(1, tx=pw, ty=pw + WASC), c)],
 
 # Stacked lockup (primary, as in the original): mark / Base / two-line tagline
 def stacked(with_tag=True):
-    ms = WW * 0.40 / MW
+    ms = WW * 0.34 / MW
     lines = [outlined(TAG_FONT, l, 10) for l in TAG_LINES]
     ts = WW * 0.86 / max(l[1] for l in lines)        # tagline narrower than the name: clear hierarchy
     lh = lines[0][2] * ts * 1.42                     # line height
@@ -92,7 +92,7 @@ b, W, H = stacked(False); themed("base-lockup-stacked-notag", b, W, H)
 
 # Horizontal lockup: mark beside the name, one-line tagline under the name
 def horizontal(with_tag=True):
-    ms = WASC * 1.15 / MH
+    ms = WASC * 1.05 / MW            # bowl about as wide as the capital is tall
     tag, tw, tasc, tdesc = outlined(TAG_FONT, TAG, 10)
     ts = WW * 0.92 / tw
     pad, gap = WASC * 0.4, WASC * 0.22
@@ -115,6 +115,6 @@ def icon(size, frac, rxf, name, scale):
     s = size * frac / max(MW, MH)
     tx, ty = (size - MW * s) / 2, (size - MH * s) / 2
     emit(name, [(MARK.transform(s, tx=tx, ty=ty), PAPER)], size, size, bg=INK, rx=size * rxf, scale=scale)
-icon(1024, 0.58, 0.225, "base-app-icon", 1)
-icon(64, 0.8, 0.22, "base-favicon", 8)
+icon(1024, 0.54, 0.225, "base-app-icon", 1)
+icon(64, 0.74, 0.22, "base-favicon", 8)
 print("done")

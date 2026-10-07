@@ -6,13 +6,9 @@
 
 ## The idea
 
-A simple bowl — the base of food — with four bubbles rising out of it. Four bubbles for the four corners of a strong base.
+A simple bowl — the base of a meal. Empty, because Base gives you the foundation and you decide what goes in it.
 
-The mark is built to a few strict rules, the way the best marks are:
-
-- **Two plain shapes.** A half-ellipse bowl on a small foot. Nothing decorative.
-- **Every bubble is the same shape at a different size.** Each ring's thickness is a fixed share of its radius, and each bubble is 74% the size of the one below it, so the trail reads as natural motion rather than a pattern.
-- **One gap.** The same space sits between every bubble and between the bowl and the first bubble.
+- **Two plain shapes.** A half-ellipse bowl on a small foot, separated by one gap. Nothing decorative.
 - **Clear hierarchy.** "Base" in Inter Light is the hero; the tagline in Poppins Medium Italic is set narrower than the name.
 
 ## Construction
@@ -23,10 +19,10 @@ Units are the drawing units in `brand/tools/mark.py`.
 | --- | --- |
 | Bowl | half-ellipse, 140 wide × 52 deep |
 | Foot | 46 × 9, set 6 below the bowl |
-| Bubbles | radius 16.5, then ×0.74 each step; ring thickness 0.36 × radius |
-| Gap between bubbles, and bowl to first bubble | 5.5 |
+| Stacked lockup | bowl is 34% of the wordmark's width |
+| Horizontal lockup | bowl is as wide as the capital B is tall, resting on the baseline |
 
-Minimum clear space: one bubble diameter. Minimum size: mark 20 px, stacked lockup 120 px wide.
+Minimum clear space: the height of the foot plus its gap, doubled. Minimum size: mark 20 px, stacked lockup 120 px wide.
 
 ## Colour
 
