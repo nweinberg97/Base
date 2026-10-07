@@ -7,3 +7,4 @@ src/data/generated/
 __pycache__/
 .DS_Store
 .build/
+photo-candidates/
