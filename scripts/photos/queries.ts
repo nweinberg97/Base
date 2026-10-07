@@ -79,3 +79,32 @@ export const PHOTO_QUERIES: Record<string, string[]> = {
   'rhubarb-compote': ['rhubarb compote', 'stewed rhubarb'],
   'dark-chocolate': ['dark chocolate pieces', 'chocolate bar broken', 'dark chocolate squares'],
 };
+
+// The food as Base hands it over (washed, cut or cooked), for the bowls on the
+// counter. Fetched with PHOTO_SET=prep.
+export const PREP_QUERIES: Record<string, string[]> = {
+  chickpeas: ['cooked chickpeas', 'boiled chickpeas', 'chickpeas drained'],
+  'black-beans': ['cooked black beans', 'boiled black beans', 'black beans bowl'],
+  'green-lentils': ['cooked lentils', 'boiled green lentils', 'cooked brown lentils'],
+  'navy-beans': ['cooked white beans', 'cooked navy beans', 'cannellini beans cooked'],
+  potatoes: ['potato wedges raw', 'cut potatoes', 'potatoes cut into wedges', 'peeled potatoes cut'],
+  'sweet-potatoes': ['sweet potato cubes raw', 'diced sweet potato', 'peeled sweet potato'],
+  carrots: ['carrot sticks', 'carrot batons', 'julienned carrots', 'cut carrots'],
+  parsnips: ['parsnip sticks', 'cut parsnips', 'peeled parsnips'],
+  beets: ['roasted beetroot peeled', 'cooked beetroot', 'boiled beets peeled'],
+  zucchini: ['sliced zucchini', 'zucchini slices', 'courgette slices raw'],
+  'bell-peppers': ['red pepper strips', 'sliced red bell pepper', 'bell pepper slices'],
+  'cremini-mushrooms': ['sliced mushrooms', 'sliced brown mushrooms', 'mushroom slices raw'],
+  kale: ['chopped kale', 'torn kale leaves', 'kale leaves washed'],
+  'yellow-onions': ['diced onion', 'chopped onion', 'onion dice'],
+  leeks: ['sliced leeks', 'chopped leek', 'leek rings'],
+  ginger: ['peeled ginger', 'ginger root peeled', 'sliced ginger'],
+  'greek-yogurt': ['yogurt glass jar', 'yoghurt in jar', 'strained yogurt jar'],
+  'brussels-sprouts': ['halved brussels sprouts raw', 'brussels sprouts cut in half', 'trimmed brussels sprouts'],
+  'butternut-squash': ['butternut squash cubes', 'cubed squash raw', 'diced butternut'],
+  'swiss-chard': ['chopped swiss chard', 'chard leaves washed', 'swiss chard stems leaves'],
+  'green-beans': ['trimmed green beans', 'green beans topped and tailed'],
+  'firm-tofu': ['pressed tofu', 'tofu cubes', 'cubed tofu raw'],
+  'whole-wheat-pasta': ['whole wheat penne', 'wholemeal pasta', 'whole grain spaghetti dry'],
+  'salsa-verde': ['bagnet verd', 'salsa verde italiana', 'sauce verte', 'green sauce bowl parsley'],
+};

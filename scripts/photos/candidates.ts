@@ -4,9 +4,11 @@
 // Writes photo-candidates/<slug>/<n>.jpg and photo-candidates/<slug>/meta.json.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { PHOTO_QUERIES } from './queries.ts';
+import { PHOTO_QUERIES, PREP_QUERIES } from './queries.ts';
 
-const OUT = resolve(import.meta.dirname, '../../photo-candidates');
+const SET = process.env.PHOTO_SET === 'prep' ? 'prep' : 'main';
+const QUERIES = SET === 'prep' ? PREP_QUERIES : PHOTO_QUERIES;
+const OUT = resolve(import.meta.dirname, '../../photo-candidates', SET === 'prep' ? 'prep' : '');
 const UA = 'BasePrototype/0.1 (https://github.com/nweinberg97/Base; photo sourcing)';
 const API = 'https://commons.wikimedia.org/w/api.php';
 const PER_SLUG = Number(process.env.PER_SLUG) || 6;
@@ -48,7 +50,7 @@ async function search(query: string): Promise<Candidate[]> {
 }
 
 const only = process.argv.slice(2);
-for (const [slug, queries] of Object.entries(PHOTO_QUERIES)) {
+for (const [slug, queries] of Object.entries(QUERIES)) {
   if (only.length && !only.includes(slug)) continue;
   const picked: Candidate[] = [];
   for (const q of queries) {
