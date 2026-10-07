@@ -6,9 +6,9 @@
 
 ## The idea
 
-A pot — the base of food — with four bubbles rising out of it. The four bubbles are the four corners of a strong base: three resting on the lid with the centre one lowest, and a fourth lifting off between them.
+A pot — the base of food — with four bubbles rising out of it. The bubbles are hollow rings: the largest just leaving the lid, each one smaller as it climbs, drifting gently side to side the way real bubbles do. Four bubbles for the four corners of a strong base.
 
-This is a clean vector redraw of the original sketch. The composition is unchanged; the geometry is tidied: true circles, one even gap between every bubble and the lid, symmetric bracket handles fused to the lid, and a single thin gap line between lid and pot.
+This is a clean vector redraw of the original sketch. The composition is unchanged; the geometry is tidied: true circles, a natural bubble trail, symmetric bracket handles fused to the lid, and a single thin gap line between lid and pot.
 
 The wordmark is "Base" in Inter Light, lightly tracked (+30), converted to outlines. The tagline is Poppins Bold Italic, lowercase, set on two lines in the stacked lockup and one line in the horizontal lockup.
 
@@ -21,7 +21,7 @@ Units are pixels of the original sketch.
 | Pot body | 134 wide × 76 tall, bottom corner radius 32 |
 | Lid | 140 wide × 15 tall, sitting 5 above the body |
 | Handles | 29 out × 33 tall, 8.5 stroke, open toward the pot |
-| Bubbles | radius 14.5, gap 4 between bubbles and to the lid; side bubbles lifted 6 above the centre one |
+| Bubbles | rings of radius 17, 12.5, 9.5, 7 (stroke 7.5 → 4.8), first one 5 above the lid |
 
 Minimum clear space: one bubble diameter. Minimum size: mark 20 px, stacked lockup 120 px wide.
 
