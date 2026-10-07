@@ -6,29 +6,29 @@
 
 ## The idea
 
-A pot — the base of food — with four bubbles rising out of it. The bubbles sit in a diamond: the four corners of a strong base.
+A bowl — the base of food — with four bubbles rising out of it. The four bubbles are the four corners of a strong base, lifting off as the food cooks.
 
-The mark follows the habits of the best marks (Apple, Airbnb, Nike): as few parts as possible, one line weight throughout, and generous negative space.
+The mark follows the habits of the best marks (Airbnb, Apple, SpaceX): as few parts as possible, one line weight, and one continuous outline.
 
-- **One stroke weight.** The pot and lid are a single monoline drawn at the same weight as the letters of the wordmark, so mark and name read as one object.
-- **Four parts only.** Lid, pot, and the four-bubble diamond. The lid line extends past the pot to suggest handles without drawing them.
-- **Round caps everywhere,** matching the rounded geometry of Poppins.
+- **One joined outline.** Rim and bowl fuse into a single shape. The rim runs past the bowl on both sides to suggest handles without drawing them.
+- **One line weight,** matched to the stems of the wordmark so mark and name read as one object.
+- **A natural bubble trail.** Four bubbles rise from the centre of the bowl, getting smaller and drifting gently to one side, the way real bubbles lift off.
 
 The wordmark is "Base" in Poppins Regular, converted to outlines. The tagline is Poppins Regular, lowercase, sized to span the wordmark.
 
 ## Construction
 
-Everything is measured in strokes (**t**). In every lockup the stroke is scaled to 0.82 of the wordmark's stem.
+Everything is measured in strokes (**t**). In every lockup the stroke is scaled to 0.9 of the wordmark's stem.
 
 | Element | Size |
 | --- | --- |
-| Line weight | 1t, round caps |
-| Pot | 11.2t wide × 5.8t deep, bottom radius 4.4t |
-| Lid | extends 1.3t past the pot on each side |
-| Gaps (bubbles → lid → pot) | 0.85t |
-| Bubbles | radius 0.72t, set on a diamond 1.38t from centre |
+| Line weight | 1t, rounded rim ends |
+| Bowl | half-ellipse, 12t wide × 5.2t deep |
+| Rim | extends 1.6t past the bowl on each side |
+| Bubbles | radii 0.9t → 0.45t; gaps 0.42t → 0.64t; drift 1.35t to the right |
+| Gap from rim to first bubble | 0.8t |
 
-Minimum clear space around any lockup: the height of the lid line plus one gap. Minimum size: mark 20 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
+Minimum clear space around any lockup: one rim height plus one bubble. Minimum size: mark 20 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
 
 ## Colour
 
