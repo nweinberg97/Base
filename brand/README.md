@@ -6,22 +6,25 @@
 
 ## The idea
 
-A pot — the base of food — with four bubbles rising out of it. The bubbles are hollow rings: the largest just leaving the lid, each one smaller as it climbs, drifting gently side to side the way real bubbles do. Four bubbles for the four corners of a strong base.
+A simple bowl — the base of food — with four bubbles rising out of it. Four bubbles for the four corners of a strong base.
 
-This is a clean vector redraw of the original sketch. The composition is unchanged; the geometry is tidied: true circles, a natural bubble trail, symmetric bracket handles fused to the lid, and a single thin gap line between lid and pot.
+The mark is built to a few strict rules, the way the best marks are:
 
-The wordmark is "Base" in Inter Light, lightly tracked (+30), converted to outlines. The tagline is Poppins Bold Italic, lowercase, set on two lines in the stacked lockup and one line in the horizontal lockup.
+- **Two plain shapes.** A half-ellipse bowl on a small foot. Nothing decorative.
+- **Every bubble is the same shape at a different size.** Each ring's thickness is a fixed share of its radius, and each bubble is 74% the size of the one below it, so the trail reads as natural motion rather than a pattern.
+- **One gap.** The same space sits between every bubble and between the bowl and the first bubble.
+- **Clear hierarchy.** "Base" in Inter Light is the hero; the tagline in Poppins Medium Italic is set narrower than the name.
 
 ## Construction
 
-Units are pixels of the original sketch.
+Units are the drawing units in `brand/tools/mark.py`.
 
 | Element | Size |
 | --- | --- |
-| Pot body | 134 wide × 76 tall, bottom corner radius 32 |
-| Lid | 140 wide × 15 tall, sitting 5 above the body |
-| Handles | 29 out × 33 tall, 8.5 stroke, open toward the pot |
-| Bubbles | rings of radius 17, 12.5, 9.5, 7 (stroke 7.5 → 4.8), first one 5 above the lid |
+| Bowl | half-ellipse, 140 wide × 52 deep |
+| Foot | 46 × 9, set 6 below the bowl |
+| Bubbles | radius 16.5, then ×0.74 each step; ring thickness 0.36 × radius |
+| Gap between bubbles, and bowl to first bubble | 5.5 |
 
 Minimum clear space: one bubble diameter. Minimum size: mark 20 px, stacked lockup 120 px wide.
 

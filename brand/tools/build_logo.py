@@ -1,7 +1,7 @@
 """Builds every Base logo asset.
 
 Run:  python3 brand/tools/build_logo.py
-Needs: fontTools, matplotlib, Inter Light and Poppins Bold Italic installed.
+Needs: fontTools, matplotlib, Inter Light and Poppins Medium Italic installed.
 All type is converted to outlines, so the SVGs have no font dependency.
 """
 import os, sys
@@ -21,7 +21,7 @@ def font(name):
         p = os.path.join(d, name)
         if os.path.exists(p): return p
     sys.exit(f"Install {name}")
-WORD_FONT, TAG_FONT = font("Inter-Light.otf"), font("Poppins-BoldItalic.ttf")
+WORD_FONT, TAG_FONT = font("Inter-Light.otf"), font("Poppins-MediumItalic.ttf")
 WORD_TRACK = 0.03
 
 MARK, MW, MH = build_mark()
@@ -69,15 +69,15 @@ themed("base-wordmark", lambda c: [(WORD.transform(1, tx=pw, ty=pw + WASC), c)],
 
 # Stacked lockup (primary, as in the original): mark / Base / two-line tagline
 def stacked(with_tag=True):
-    ms = WW * 0.49 / MW
+    ms = WW * 0.40 / MW
     lines = [outlined(TAG_FONT, l, 10) for l in TAG_LINES]
-    ts = WW * 1.18 / max(l[1] for l in lines)        # tagline a little wider than the wordmark
+    ts = WW * 0.86 / max(l[1] for l in lines)        # tagline narrower than the name: clear hierarchy
     lh = lines[0][2] * ts * 1.42                     # line height
     pad = WASC * 0.45
     W = max(WW, max(l[1] for l in lines) * ts) + 2 * pad
     y_mark = pad
-    y_base = y_mark + MH * ms + WASC * 0.06 + WASC
-    y_tag0 = y_base + WDESC + WASC * 0.36 + lines[0][2] * ts
+    y_base = y_mark + MH * ms + WASC * 0.16 + WASC
+    y_tag0 = y_base + WDESC + WASC * 0.30 + lines[0][2] * ts
     H = (y_tag0 + lh * (len(lines) - 1) + lines[-1][3] * ts if with_tag else y_base + WDESC) + pad
     def b(c):
         it = [(MARK.transform(ms, tx=(W - MW * ms) / 2, ty=y_mark), c),
@@ -92,9 +92,9 @@ b, W, H = stacked(False); themed("base-lockup-stacked-notag", b, W, H)
 
 # Horizontal lockup: mark beside the name, one-line tagline under the name
 def horizontal(with_tag=True):
-    ms = WASC * 1.05 / MH
+    ms = WASC * 1.15 / MH
     tag, tw, tasc, tdesc = outlined(TAG_FONT, TAG, 10)
-    ts = WW * 1.0 / tw
+    ts = WW * 0.92 / tw
     pad, gap = WASC * 0.4, WASC * 0.22
     x_word = pad + MW * ms + gap
     W = max(x_word + WW, x_word + tw * ts) + pad
@@ -115,6 +115,6 @@ def icon(size, frac, rxf, name, scale):
     s = size * frac / max(MW, MH)
     tx, ty = (size - MW * s) / 2, (size - MH * s) / 2
     emit(name, [(MARK.transform(s, tx=tx, ty=ty), PAPER)], size, size, bg=INK, rx=size * rxf, scale=scale)
-icon(1024, 0.62, 0.225, "base-app-icon", 1)
+icon(1024, 0.58, 0.225, "base-app-icon", 1)
 icon(64, 0.8, 0.22, "base-favicon", 8)
 print("done")

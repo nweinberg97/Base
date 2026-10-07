@@ -1,39 +1,39 @@
-"""The Base mark: a pot with bracket handles and a lid, four bubbles rising
-out of it -- the four corners of a strong base. Built from the original sketch
-(units are pixels of that sketch), with true circles and even gaps."""
-import math
-from geo import *
+"""The Base mark: a simple bowl with four bubbles rising out of it.
 
-def arc(s, cx, cy, r, a0, a1):
-    k=K*r; c0,s0=math.cos(math.radians(a0)),math.sin(math.radians(a0)); c1,s1=math.cos(math.radians(a1)),math.sin(math.radians(a1))
-    p0,p1=(cx+r*c0,cy+r*s0),(cx+r*c1,cy+r*s1); sg=1 if a1>a0 else -1
-    s.C((p0[0]-sg*k*s0,p0[1]+sg*k*c0),(p1[0]+sg*k*s1,p1[1]-sg*k*c1),p1)
-def handle(xn, xf, y0, y1, t, r):
-    ri, s = max(r - t, 0.001), Shape()
-    if xn > xf:
-        s.M(xn, y0).L(xf + r, y0); arc(s, xf + r, y0 + r, r, 270, 180); s.L(xf, y1 - r)
-        arc(s, xf + r, y1 - r, r, 180, 90); s.L(xn, y1).L(xn, y1 - t).L(xf + t + ri, y1 - t)
-        arc(s, xf + t + ri, y1 - t - ri, ri, 90, 180); s.L(xf + t, y0 + t + ri)
-        arc(s, xf + t + ri, y0 + t + ri, ri, 180, 270); s.L(xn, y0 + t)
-    else:
-        s.M(xn, y0).L(xn, y0 + t).L(xf - t - ri, y0 + t); arc(s, xf - t - ri, y0 + t + ri, ri, 270, 360)
-        s.L(xf - t, y1 - t - ri); arc(s, xf - t - ri, y1 - t - ri, ri, 0, 90); s.L(xn, y1 - t)
-        s.L(xn, y1).L(xf - r, y1); arc(s, xf - r, y1 - r, r, 90, 0); s.L(xf, y0 + r)
-        arc(s, xf - r, y0 + r, r, 360, 270); s.L(xn, y0)
+Built to a few strict rules:
+- every bubble is the same shape at a different size (ring thickness is a
+  fixed share of its radius), stepping down by a fixed ratio as it rises;
+- the gap between bowl and foot equals the largest bubble's line weight;
+- one gap (G) between every bubble and between the bowl and the first bubble.
+"""
+import math
+from geo import Shape, K, ring, rrect
+
+T = 6.0        # bowl-to-foot gap = the largest ring's line weight
+G = 5.5        # gap between bubbles, and from the bowl to the first one
+RATIO = 0.74   # each bubble is 74% of the one below it
+RING = 0.36    # ring thickness as a share of radius
+
+def half_ellipse(rx, ry, y0):
+    kx, ky = K * rx, K * ry
+    s = Shape().M(-rx, y0).L(rx, y0)
+    s.C((rx, y0 + ky), (kx, y0 + ry), (0, y0 + ry)).C((-kx, y0 + ry), (-rx, y0 + ky), (-rx, y0))
     return s.Z()
-def build(g=5.0):
-    """Units = pixels of the original sketch; pot centred on x=0."""
-    W=134; x0,x1=-W/2,W/2
-    lid_t, lid_b = 470, 485        # lid band
-    body_t, body_b = 490, 566      # body, below a thin gap line
-    # handles overlap the lid by 1 unit and share its top edge, so lid and handles fuse into one shape
-    p=[rrect(x0-3,lid_t,x1+3,lid_b,0,0), rrect(x0,body_t,x1,body_b,0,32),
-       reverse(handle(x0-2, x0-3-29, lid_t, 503, 8.5, 9)), reverse(handle(x1+2, x1+3+29, lid_t, 503, 8.5, 9))]  # same winding as the lid
-    # Four bubbles rising out of the pot: hollow rings, largest just leaving
-    # the lid, each smaller one drifting a little as it climbs.
-    y1 = lid_t - g - 17
-    rings = [(-4, y1, 17, 7.5), (14, y1 - 33.5, 12.5, 6.5), (2, y1 - 59.5, 9.5, 5.5), (16, y1 - 80.0, 7.0, 4.8)]
-    p += [ring(x, y, rr, tt) for x, y, rr, tt in rings]
-    s=Shape()
-    for q in p: s.extend(q)
-    a,b,c,d=s.bbox(); return s.transform(1,tx=-a,ty=-b),c-a,d-b
+
+def build():
+    rx, ry = 70.0, 52.0                          # bowl: 140 wide, 52 deep
+    foot_w, foot_h = 46.0, 9.0
+    parts = [half_ellipse(rx, ry, 0),
+             rrect(-foot_w / 2, ry + T, foot_w / 2, ry + T + foot_h, 0, 3)]
+    # bubble trail: rises from the bowl's centre, drifting gently side to side
+    r, y = 16.5, -G
+    drift = [-3.0, 6.0, -1.0, 6.0]
+    for i in range(4):
+        y -= r
+        parts.append(ring(drift[i], y, r, r * RING))
+        y -= r + G
+        r *= RATIO
+    s = Shape()
+    for p in parts: s.extend(p)
+    x0, y0, x1, y1 = s.bbox()
+    return s.transform(1, tx=-x0, ty=-y0), x1 - x0, y1 - y0
