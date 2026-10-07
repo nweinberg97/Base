@@ -21,6 +21,19 @@ This repository is the working prototype: a premium storefront and the SQLite re
 
 The weekly cycle — plan, explore, reserve, prepare, pick up, batch-prep, cook, share, return, repeat — is on `/how-it-works`.
 
+## Live site
+
+**https://nweinberg97.github.io/Base/** — deployed by GitHub Actions (`.github/workflows/pages.yml`) on every push to `main`, every Monday morning so *this week's Base* moves with the calendar, and on demand from the Actions tab (*Deploy to GitHub Pages → Run workflow*).
+
+One-time setup: in the repository, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+To check a Pages build locally under the same sub-path:
+
+```bash
+BASE_PATH=/Base npm run build
+BASE_PATH=/Base npm run preview   # http://localhost:4173/Base/
+```
+
 ## Quick start
 
 Requires **Node 22.18 or later** (for built-in TypeScript type stripping and `node:sqlite`). No API keys or external services.
