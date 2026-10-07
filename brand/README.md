@@ -6,27 +6,28 @@
 
 ## The idea
 
-Three prepared ingredients resting above a bowl. The mark is built from only two primitives — a circle and a half-circle — so it reads instantly at 16 px and holds up on a storefront sign.
+Three prepared ingredients stacked above a bowl. The mark is built from three primitives only — circles, a shallow half-ellipse and a hairline bar — so it stays crisp from a 16 px favicon to a storefront sign.
 
-- **Three dots, stacked as a pyramid** — the mise en place: ingredients prepped and ready. Two on the bottom, one on top: a *base* that something is built on.
-- **The rim** extends past the bowl to suggest handles, keeping the cookware read from the original sketch.
-- **The half-circle bowl** echoes the round bowls of the **b**, **a** and **e** in the wordmark, so mark and type feel like one family.
+- **Three dots in a pyramid** are the mise en place: ingredients prepped and ready. Two on the bottom, one on top — a *base* you build on.
+- **The hairline rim** reaches past the bowl as handles, carrying over the cookware from the original sketch with far less weight.
+- **The shallow bowl** gives the mark a calm, wide footprint that sits comfortably beside the wordmark.
 
-The wordmark is set in lowercase Poppins Medium with tightened tracking (−25), converted to outlines. The tagline is Poppins Regular, lowercase, tracked +15, sized to span the wordmark.
+The wordmark is lowercase Inter Display Medium, tracked −45 for a tight, confident set, converted to outlines. The tagline is Inter Display Regular, lowercase, sized to span the wordmark in the stacked lockup.
 
 ## Construction
 
-Everything is drawn on a single unit **g** (the gap between parts):
+Everything is drawn on a single unit **g**:
 
 | Element | Size |
 | --- | --- |
-| Gap between dots, rim and bowl | 1g |
-| Dot radius | 2.7g |
-| Rim thickness | 2.2g (fully rounded ends) |
-| Bowl radius | 9g |
-| Rim overhang (each side) | 2.6g |
+| Rim thickness | 1.1g (fully rounded ends) |
+| Rim overhang past the bowl (each side) | 2.4g |
+| Gap: dots → rim, rim → bowl | 1.5g |
+| Dot radius | 2.4g |
+| Space between dots | 1.2g |
+| Bowl | 22g wide × 8.5g deep |
 
-Minimum clear space around any lockup: one dot diameter. Minimum size: mark 16 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
+Minimum clear space around any lockup: one dot diameter (4.8g). Minimum size: mark 16 px, horizontal lockup 96 px wide, stacked lockup with tagline 120 px wide.
 
 ## Colour
 
