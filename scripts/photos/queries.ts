@@ -116,18 +116,18 @@ export const DISH_QUERIES: Record<string, string[]> = {
   'green-chicken-curry': ['thai green chicken curry', 'green curry chicken', 'green curry'],
   'breakfast-hash': ['breakfast hash fried egg', 'potato hash eggs skillet', 'breakfast hash'],
   'roasted-cauliflower-barley-salad': ['roasted cauliflower grain salad', 'barley salad', 'roasted cauliflower salad'],
-  'lemon-garlic-chicken-sheet-pan': ['sheet pan chicken potatoes lemon', 'roast chicken thighs potatoes lemon', 'lemon garlic chicken traybake'],
+  'lemon-garlic-chicken-sheet-pan': ['roast chicken thighs', 'chicken traybake', 'sheet pan chicken', 'roasted chicken potatoes', 'baked chicken thighs'],
   'chicken-barley-soup': ['chicken barley soup', 'chicken and barley soup', 'chicken vegetable barley soup'],
   'spiced-carrot-soup': ['carrot soup yogurt', 'spiced carrot soup', 'carrot soup bowl'],
-  'eggs-garlicky-greens-chickpeas': ['eggs greens chickpeas', 'fried egg spinach chickpeas', 'eggs on sauteed greens'],
+  'eggs-garlicky-greens-chickpeas': ['eggs and greens', 'fried egg kale', 'shakshuka greens', 'egg spinach skillet', 'eggs florentine'],
   'cauliflower-potato-curry': ['aloo gobi', 'cauliflower potato curry', 'aloo gobhi'],
-  'chicken-barley-bowls-lemon-yogurt': ['chicken grain bowl yogurt sauce', 'chicken barley bowl', 'chicken grain bowl'],
+  'chicken-barley-bowls-lemon-yogurt': ['chicken grain bowl', 'chicken quinoa bowl', 'grilled chicken salad bowl', 'chicken rice bowl vegetables'],
   'squash-black-bean-chili': ['black bean squash chili', 'vegetarian black bean chili', 'butternut squash chili'],
-  'crispy-tofu-cabbage-stir-fry': ['tofu cabbage stir fry', 'crispy tofu stir fry', 'tofu stir-fry'],
+  'crispy-tofu-cabbage-stir-fry': ['tofu stir fry', 'fried tofu vegetables', 'tofu and cabbage', 'crispy tofu'],
   'kale-barley-minestrone': ['minestrone kale', 'minestrone soup', 'kale vegetable soup'],
   'charred-tomato-black-bean-bowls': ['black bean rice bowl tomato', 'black bean bowl', 'black beans rice salsa'],
   'asparagus-spinach-barley-risotto': ['barley risotto asparagus', 'orzotto', 'asparagus risotto'],
-  'parsnip-cabbage-mushroom-tray': ['roasted parsnips mushrooms', 'roasted root vegetables tray', 'roasted parsnips cabbage'],
+  'parsnip-cabbage-mushroom-tray': ['roasted parsnips', 'roasted root vegetables', 'roasted vegetables tray', 'roasted cabbage'],
 };
 
 // Better-matching searches for Openverse (mostly Flickr), which has far more home-kitchen food photos.
