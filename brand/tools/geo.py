@@ -100,7 +100,9 @@ class _Pen(BasePen):
 
 def text_shape(fontpath, text, size, tracking=0.0, kern=True):
     """Return (Shape, advance) with baseline at y=0, y-down coordinates. tracking in em."""
-    f = TTFont(fontpath)
+    fn = 0
+    if "#" in fontpath: fontpath, fn = fontpath.split("#"); fn = int(fn)
+    f = TTFont(fontpath, fontNumber=fn)
     upm = f["head"].unitsPerEm
     k = size / upm
     cmap = f.getBestCmap(); gs = f.getGlyphSet(); hmtx = f["hmtx"]
@@ -187,7 +189,9 @@ def ring(cx, cy, r, t):
 
 
 def stem_width(fontpath, size, ch="l"):
-    f = TTFont(fontpath); gs = f.getGlyphSet(); n = f.getBestCmap()[ord(ch)]
+    fn = 0
+    if "#" in fontpath: fontpath, fn = fontpath.split("#"); fn = int(fn)
+    f = TTFont(fontpath, fontNumber=fn); gs = f.getGlyphSet(); n = f.getBestCmap()[ord(ch)]
     from fontTools.pens.boundsPen import BoundsPen
     bp = BoundsPen(gs); gs[n].draw(bp); x0, y0, x1, y1 = bp.bounds
     return (x1 - x0) * size / f["head"].unitsPerEm
